@@ -1,0 +1,15 @@
+[0] Config.pm:354> INFO - This is Biber 2.7
+[0] Config.pm:357> INFO - Logfile is 'lit.blg'
+[72] biber-darwin:303> INFO - === Fri May  4, 2018, 14:58:46
+[113] Biber.pm:359> INFO - Reading 'lit.bcf'
+[226] Biber.pm:835> INFO - Found 2 citekeys in bib section 0
+[256] Biber.pm:3670> INFO - Processing section 0
+[279] Biber.pm:3840> INFO - Looking for bibtex format file 'lit.bib' for section 0
+[281] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
+[288] bibtex.pm:1292> INFO - Found BibTeX data source 'lit.bib'
+[322] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[323] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[323] Biber.pm:3499> INFO - Sorting list 'nty/global/' of type 'entry' with scheme 'nty' and locale 'en-US'
+[323] Biber.pm:3505> INFO - No sort tailoring available for locale 'en-US'
+[327] bbl.pm:608> INFO - Writing 'lit.bbl' with encoding 'ascii'
+[328] bbl.pm:712> INFO - Output to lit.bbl
