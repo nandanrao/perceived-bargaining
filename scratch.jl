@@ -1,30 +1,27 @@
-workers = 1:1000
-workers = reverse(workers)
-firms = 1:1000
-
 function remove_firm(a, apps)
     [filter(i -> i != a, worker) for worker in apps]
 end
 
-
 function applications(apps)
-    picks = Array{Int64, 1}()
+    apps = reverse(apps)
+    picks = Array{Int64, 1}(length(apps))
     for i in 1:length(apps)
         a = apps[i]
         if length(a) > 0
             pick = maximum(a)
             apps = remove_firm(pick, apps)
-            append!(picks, pick)
+            picks[i] = pick
         else
-            append!(picks, -1)
+            picks[i] = -100
         end
     end
-    picks
+    reverse(picks)
 end
 
-
-apps = [sample(firms, 20, replace=false) for i in workers]
-df = DataFrame(picks = reverse(applications(apps)))
+workers = 1:1000
+firms = 1:1000
+apps = [sample(firms, 50, replace=false) for i in workers]
+df = DataFrame(picks = applications(apps))
 plot(df, y = "picks", Geom.point)
 
 
