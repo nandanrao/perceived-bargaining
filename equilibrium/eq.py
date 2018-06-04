@@ -7,6 +7,11 @@ def match_fn(unemployed, vacancies, aH):
     else:
         return unemployed/aH
 
+def flatten(l):
+    return (flatten(l[0]) +
+            (flatten(l[1:]) if len(l) > 1 else [])
+            if type(l) is list else [l])
+
 
 class Foo:
     def __init__(self, aH, aL, y, c, b, delta, sigma, r, match_fn, precision = .1):
@@ -23,10 +28,12 @@ class Foo:
         self.A = (self.r + self.sigma)/(1 - self.sigma) + self.delta
         self.B = aH/3
         # Note: we are not including 0!!
-        self.X = np.round(np.arange(0, 1/aH, precision), 4)[1:]
-        self._vacancies = np.ones(len(self.X))
-        self._unemployed = np.ones(len(self.X))
+        self.X = np.around(np.arange(0, 1/aH, precision), 4)[1:]
         self._values = np.zeros(len(self.X))
+
+        # self._vacancies = np.zeroes(len(self.X))
+        # self._unemployed = np.zeroes(len(self.X))
+
 
     def get_x(self, x):
         """Gets the index in self.X of a given market x"""
@@ -35,11 +42,11 @@ class Foo:
         except IndexError:
             raise Exception('Trying to get an x that does not exist!')
 
-    def vacancies(self, x):
-        return float(self._vacancies[self.get_x(x)])
+    # def vacancies(self, x):
+    #     return float(self._vacancies[self.get_x(x)])
 
-    def unemployed(self, x):
-        return float(self._unemployed[self.get_x(x)])
+    # def unemployed(self, x):
+    #     return float(self._unemployed[self.get_x(x)])
 
     def tightness(self, x):
         # try:
@@ -60,7 +67,6 @@ class Foo:
         except ZeroDivisionError:
             return
 
-
     def pos_win(self, m):
         aH, aL = self.aH, self.aL
         return aH + aL - aH*aL/m
@@ -70,8 +76,6 @@ class Foo:
         return aH - (aH - m)*(1 - x*aL)/(1 - x*m)
 
     def pick_market(self):
-        # max over value_of_market...
-        # his is dynamic programming - use maret values, stored?
         i = np.argmax(self._values)
         return self.X[i]
 
@@ -91,10 +95,24 @@ class Foo:
         return x*m*J + (1 - x*m)*V
 
     def it(self, m):
-        for i in range(10):
+        e = 1
+        while e > 1e-06:
+            prev = np.copy(self._values)
             for x in self.X:
                 self._values[self.get_x(x)] = self.value_of_market(x, m)
+            e = np.max(prev - self._values)
         return self._values
 
-    def foo(self, m):
-        (1 - sigma)(1 - aH * pick_market(m))
+    def equilibrium_tree(self, m, it = 0, max_depth = 4):
+        self.it(m) # this feels really mutable and ugly
+        x = self.pick_market()
+        mL, mH = self.pos_lose(x,m), self.pos_win(m)
+        if it >= max_depth:
+            return [mL, mH]
+        return [m, self.equilibrium_tree(mL, it+1), self.equilibrium_tree(mH, it+1)]
+
+    def foo(self, m, a):
+        x = self.pick_market()
+        mn = self.pos_lose(x, m)
+        # TODO: make unemployed function for tree building?? Separate??
+        amt = (1 - self.sigma)(1 - a * x)*self.unemployed(m)
