@@ -28,3 +28,12 @@ plot(df, y = "picks", Geom.point)
 # show distribution of apps/firm
 apps = [a for i in apps for a in i]
 plot(x=counts(apps), Geom.histogram(bincount = 50))
+
+
+# maths
+
+function p(n, alpha = 2, beta = 2)
+    dist = Beta(alpha, beta)
+    fn(x) = (1 - (1 - x)^n) * pdf(dist, x)
+    quadgk(fn, 0.0001, .9999)
+end
