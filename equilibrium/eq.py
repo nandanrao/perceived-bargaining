@@ -12,7 +12,6 @@ def flatten(l):
             (flatten(l[1:]) if len(l) > 1 else [])
             if type(l) is list else [l])
 
-
 class Foo:
     def __init__(self, aH, aL, y, c, b, delta, sigma, r, match_fn, precision = .1):
         self.aH = aH
@@ -31,6 +30,10 @@ class Foo:
         self.X = np.around(np.arange(0, 1/aH, precision), 4)[1:]
         self._values = np.zeros(len(self.X))
 
+        self.pH = .5
+        self.pL = 1 - self.pH
+        self._unemployed = { '0.5': [self.pL * self.sigma, self.pH * self.sigma ]}
+        # self._employed = { str(self.pos_win(0.5)) : self.currently_employed}
         # self._vacancies = np.zeroes(len(self.X))
         # self._unemployed = np.zeroes(len(self.X))
 
@@ -47,6 +50,8 @@ class Foo:
 
     # def unemployed(self, x):
     #     return float(self._unemployed[self.get_x(x)])
+
+
 
     def tightness(self, x):
         # try:
@@ -111,8 +116,53 @@ class Foo:
             return [mL, mH]
         return [m, self.equilibrium_tree(mL, it+1), self.equilibrium_tree(mH, it+1)]
 
-    def foo(self, m, a):
+    def unemployed(self, m):
+        return self._unemployed[str(m)]
+
+    def employed_from(self, m):
+        self.it(m)
+        pos = self.pos_win(m)
+        x = self.pick_market()
+        uL, uH = self.unemployed(m)
+        eq = lambda a,u: ((1 - self.sigma) * a * x * u) / (self.sigma + (1 - self.sigma)*self.delta)
+        L,H = [eq(a,u) for a,u in [(self.aL, uL), (self.aH, uH)]]
+        return (pos, [L,H])
+
+    def unemployed_rejects(self, m):
+        # for any m
+        self.it(m)
         x = self.pick_market()
         mn = self.pos_lose(x, m)
-        # TODO: make unemployed function for tree building?? Separate??
-        amt = (1 - self.sigma)(1 - a * x)*self.unemployed(m)
+        # traverse tree and generate all unemployed...
+        uL, uH = self.unemployed(m)
+        L,H = [(1 - self.sigma)*(1 - a * x)*u for a,u in [(self.aL, uL), (self.aH, uH)]]
+        return (mn, [L,H])
+
+    def fired_employees(self, m):
+        # for any m
+        self.it(m)
+        eq = lambda e: (1 - self.sigma) * self.delta * e
+        return [eq(e) for e in self.employed_from(m)[1]]
+
+    def build_distributions(self, tree):
+        m0 = tree[0]
+        m1, amts = self.unemployed(m0)
+        self._unemployed[m1] = amts
+
+        rejects = get_type(tree, rejects=True)
+        for m in rejects:
+            self._unemployed[str(m)] = self.unemployed_rejects(m)[1]
+
+
+def get_type(tree, rejects=True):
+    try:
+        L,H = tree[1], tree[2]
+        target = L if rejects else H
+        if len(target) > 2:
+            return [target[0]] + get_type(L, rejects) + get_type(H, rejects)
+        else: # target is a leaf
+            return get_type(L, rejects) + get_type(H, rejects)
+    except IndexError: # tree is leaf
+        return [tree[0]] if rejects else [tree[1]]
+
+# employed workers with type pos_win(m)
