@@ -36,25 +36,44 @@ def test_pick_market_different_for_beliefs():
 
 def test_equilibrium_tree_respects_depth():
     foo = Equilibrium(1, .05, .1, .05, .05, delta = .1, sigma = .2, r = .04, B=.3, precision = .05)
-    tree = foo.equilibrium_tree(3)
+    tree = foo.equilibrium(3)
     assert(len(tree) == 3)
-    tree = foo.equilibrium_tree(5)
+    tree = foo.equilibrium(5)
     assert(len(tree) == 5)
 
 def test_belief_tree_get_amounts():
     tree = BeliefTree(0, [1,2])
     l,r = BeliefTree(0, [1,3], [1,1]), BeliefTree(0, [3,5], [1,2])
-    tree.add_children(l,r)
+    tree.add_child(l).add_child(r)
     assert(np.all(tree.get_amounts('employed') == [2, 3]))
     assert(np.all(tree.get_amounts('unemployed') == [5, 10]))
 
 
 def test_wages_correctly_gathers_employed():
     foo = Equilibrium(1, .05, .1, .05, .05, delta = .1, sigma = .2, r = .04, B=.3, precision = .01)
-    foo.equilibrium_tree()
+    foo.equilibrium()
     wages = sum([i for x in foo._wages.values() for i in x])
     employed = sum(foo.belief_tree.get_amounts('employed'))
     assert_approx_equal(wages, employed, 6)
+
+def test_distortion():
+    foo = Equilibrium(1, .05, .1, .05, .05, delta = .007, sigma = .1, r = .04, B=.6, precision = .01, distortion = 0.05)
+    bar = Equilibrium(1, .05, .1, .05, .05, delta = .007, sigma = .1, r = .04, B=.6, precision = .01, distortion = 0.5)
+    m = (1 + 0.5)/2
+    foo.it(m)
+    bar.it(m)
+    x_foo1 = foo.pick_market()
+    x_bar1 = bar.pick_market()
+    assert(x_foo1 == x_bar1)
+
+    foo.it(foo.pos_lose(x_foo1, m))
+    bar.it(bar.pos_lose(x_bar1, m))
+    x_foo2 = foo.pick_market()
+    x_bar2 = bar.pick_market()
+    # This is our test ==> discretizing into 10 bins, bar switches, while foo doesn't
+    assert(np.round(x_foo1, 1) == np.round(x_foo2, 1))
+    assert(np.round(x_foo2, 1) < np.round(x_bar2, 1))
+
 
 
 # def test_fired_employees():
