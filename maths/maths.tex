@@ -33,65 +33,111 @@ $$
 $$
 Which is increasing in $n$ for any valid values of $\alpha$ and $\beta$. Any reasonable estimate of $p$ compatible with correct Bayesian updating will, therefore, suggest that players estimate a greater probability of winning given another $n$ chances, after $n$ failures, as $n$ increases.
 
-\section{ Experiment 2 }
+\section{ Experiment 3 }
 
 \subsection{ Experimental Design }
 
-High boxes and low boxes, you can pick one or the other.
-
 \subsection{ Proof of Optimality }
 
-The optimal strategy for the game can be formulated as follows: begin with the belief that the probability of being a high type is $\frac{1}{2}$, which you are told. Try the high box first, and afterwards update your beliefs. If you won, you know for sure you are a high type (and you also exit the game). If you lose, surely the probability of your being a high type has gone down, and as such you should update your belief downward. For now, let's assume you know the true probability of winning a high box given that you are a high type, which we will call $t$. Remember this is also the probability of winning a low box, regardless of type. Denote the result as $k$, the box type as $X_i, i \in {L, H}$ and the indivdual's type as $a_i, i \in {L, H}$:
+In this game, players two unknown variables to estimate, both of which effect the probability of winning:
+
+\begin{enumerate}
+\item The ``group'' the player belongs to ($a_i, i \in \{L,H\}$)
+\item The (unkown) probability of payout, $t$, given that they are in the group $a_H$.
+\end{enumerate}
 %
+Rolls are modelled as Bernouli random variables:
 \begin{align*}
-  P(a_H | X_H, k = 0) = \frac{ P(k = 0 | a_H, x_H) P(a_H)}{ \sum_i P(k = 0 | x_H, a_i) }
+k_{n+1} \thicksim Bernouli( p ) \\
+p \coloneqq P(a_H | n)P(t | n)
 \end{align*}
-Which we can rewrite in recursive form to find the posterior estimated probability of being a high type given the evidence of $n$ failures:
+Clearly, the two variables are not uniquely identifiable without further assumptions. In general, the difference between updating one's beliefs about one's own characteristics versus updating one's beliefs about the world is extremely important in the general question of how people search for jobs. For our current purposes, however, we treat them as one and the same. As participants' ``personal'' characteristics are given externally, by random chance, and they have no private signal about it whatsoever, it can be reasonably modelled as part of the outside world.
+
+We can formulate the Bayesian posteriors, after $n$ failures, as follows (assuming independence of $a_i$ and $t$):
 \begin{align*}
-  \hat{P}_{H,n} &= \frac{(1 - t) }{ (1-t)P(a_H) + (1 - P(a_H)) } \hat{P}_{H, n -1 } \\
-  \hat{P}_{H,n} &= \left( \frac{(1 - t) }{ 1 - P(a_H)t } \right)^n P(a_H)
+  P(a_i | n,t) &= \frac{P(n | a_i, t) P(a_i)}{\sum_{i} P(n | a_i, t) P(a_i)} \\
+  P(t | n,a_i) &= \frac{P(n | a_i, t) P(t)}{\int_{t=0}^1 P(n | a_i, t) P(t) dt}
 \end{align*}
-%
-We can then frame the game in the form of a dynamic programming problem with the following recursive value function:
+
+We can formulate the game formally in the form of a recursive dynamic programming
+
 \begin{align*}
-  V(x, \hat{P}_{H,n}, k_n) =
- \begin{cases} W(x), \text{for} \ k_n = 1 \\
-    \max \bigg\{ \mathbb{E}[V(x_L, \hat{P}_{H,n+1}, k_{n+1})] \ , \ \mathbb{E}[V(x_H, \hat{P}_{H,n+1}, k_{n+1})]  \bigg\}, \text{for} \ k_n = 0
+  V(\hat{P}_{H,n}, k_n) =
+ \begin{cases} W, \text{for} \ k_n = 1 \\
+   \max \bigg\{ \mathbb{E}[V(\hat{P}_{H,n+1}, k_{n+1})] \ , \ \mathbb{E}[V_q]  \bigg\}, \text{for} \ k_n = 0
 \end{cases}
 \end{align*}
-We can simplify the problem further if we assume, as we have, that players will start with high boxes and does not switch back after moving to low boxes. This allows us to simplify our state to $n$, the number of failed high-box attempts:
-\begin{align*}
-  V(n, k_n) =
- \begin{cases} W_H, \text{for} \ k_n = 1 \\
-    \max \bigg\{ V_L(n) \ , \ \mathbb{E}[V(n+1, k_{n+1})]  \bigg\}, \text{for} \ k_n = 0
-\end{cases}
-\end{align*}
-Where $V_L(n) = \left(1 - (1 - t)^{N-n}\right) W_L $ is the expected value of the deterministic policy of playing only low boxes for the rest of the game ($\pi(n, k_n) = x_L$). We can write out the expected value explicitly:
+%
+Where $W$ donates the winnings from the game (\$5), and $V_q$ the value of quitting and pursuing ones outsides option (presumably working on other MTurk tasks). Clearly, this is an optimal stopping time problem, with the conditions for stopping given by:
 $$
-\mathbb{E}[V(n, k_{n})] = t \hat{P}_{H,n} W_H + (1-t)\hat{P}_{H,n}\mathbb{E}[V(n+1, k_{n+1})]+ (1 - \hat{P}_{H,n}) \mathbb{E}[V(n+1, k_{n+1})]
+\mathbb{E}[V(\hat{P}_{H,n+1}, k_{n+1})] \leq \mathbb{E}[V_q]
 $$
-Intuitively, more lost attempts, given a finite number of trials, cannot be better. This means that if:
+Which happens when the opportunity cost of playing ``one more roll'' exceeds the expected payoff, given the current estimation of p. As such, we can directly examine the marginal case:
 $$
-V_L(n) > \mathbb{E}[V(n+1, k_{n+1})]
+\hat{P}_{H, n} W \leq rc
 $$
-this implies that:
-$$
-V_L(n + 1) > \mathbb{E}[V(n+2, k_{n+2})]
-$$
-In other words, if we switch to low boxes, we will not want to switch back. This allows us to write the conditions for switching strategies as:
-$$
-V_L(n) = t \hat{P}_{H,n} W_H + (1-t)\hat{P}_{H,n}V_L(n + 1)+ (1 - \hat{P}_{H,n}) V_L(n + 1)
-$$
-Which implicitly defines $n$ as a function of $t$, $W_H$, $W_L$, $N$, and $\hat{P}_{H,n}$, all of which are known. Plugging in $V_L(n)$ and rearranging terms, we get an interpretable version:
-$$
-1 - (1 - t)^{N-n} - (1 - t \hat{P}_{H,n}) \left(1 - (1 - t)^{N-n-1}\right) = t \hat{P}_{H,n} \frac{W_H}{W_L}
-$$
-Where we can see that the expected lost value of not switching to low boxes this period must equal the expected increase in winnings from trying one more high box. Setting $t = \frac{2}{N}$ and solving for n as a function of N:
-\begin{align*}
-  N &= 9, n \approx 4.25 \\
-  N &= 45, n \approx 24.5
-\end{align*}
-Which gives us our benchmark for optimal play. Of note, the ratio $n/N$ is increasing in N, but only slightly.
+Where $t$ is the time (seconds) it takes to play one more roll, and c is the opportunity cost (dollars / second) of the outside option's wage.
+
+% \section{ Experiment 2 }
+
+% \subsection{ Experimental Design }
+
+% High boxes and low boxes, you can pick one or the other.
+
+% \subsection{ Proof of Optimality }
+
+% The optimal strategy for the game can be formulated as follows: begin with the belief that the probability of being a high type is $\frac{1}{2}$, which you are told. Try the high box first, and afterwards update your beliefs. If you won, you know for sure you are a high type (and you also exit the game). If you lose, surely the probability of your being a high type has gone down, and as such you should update your belief downward. For now, let's assume you know the true probability of winning a high box given that you are a high type, which we will call $t$. Remember this is also the probability of winning a low box, regardless of type. Denote the result as $k$, the box type as $X_i, i \in {L, H}$ and the indivdual's type as $a_i, i \in {L, H}$:
+% %
+% \begin{align*}
+%   P(a_H | X_H, k = 0) = \frac{ P(k = 0 | a_H, x_H) P(a_H)}{ \sum_i P(k = 0 | x_H, a_i) }
+% \end{align*}
+% Which we can rewrite in recursive form to find the posterior estimated probability of being a high type given the evidence of $n$ failures:
+% ----------WRONG!!!!!!!!!----
+% % \begin{align*}
+% %   \hat{P}_{H,n} &= \frac{(1 - t) }{ (1-t)P(a_H) + (1 - P(a_H)) } \hat{P}_{H, n -1 } \\
+% %   \hat{P}_{H,n} &= \left( \frac{(1 - t) }{ 1 - P(a_H)t } \right)^n P(a_H)
+% % \end{align*}
+% %
+% We can then frame the game in the form of a dynamic programming problem with the following recursive value function:
+% \begin{align*}
+%   V(x, \hat{P}_{H,n}, k_n) =
+%  \begin{cases} W(x), \text{for} \ k_n = 1 \\
+%     \max \bigg\{ \mathbb{E}[V(x_L, \hat{P}_{H,n+1}, k_{n+1})] \ , \ \mathbb{E}[V(x_H, \hat{P}_{H,n+1}, k_{n+1})]  \bigg\}, \text{for} \ k_n = 0
+% \end{cases}
+% \end{align*}
+% We can simplify the problem further if we assume, as we have, that players will start with high boxes and does not switch back after moving to low boxes. This allows us to simplify our state to $n$, the number of failed high-box attempts:
+% \begin{align*}
+%   V(n, k_n) =
+%  \begin{cases} W_H, \text{for} \ k_n = 1 \\
+%     \max \bigg\{ V_L(n) \ , \ \mathbb{E}[V(n+1, k_{n+1})]  \bigg\}, \text{for} \ k_n = 0
+% \end{cases}
+% \end{align*}
+% Where $V_L(n) = \left(1 - (1 - t)^{N-n}\right) W_L $ is the expected value of the deterministic policy of playing only low boxes for the rest of the game ($\pi(n, k_n) = x_L$). We can write out the expected value explicitly:
+% $$
+% \mathbb{E}[V(n, k_{n})] = t \hat{P}_{H,n} W_H + (1-t)\hat{P}_{H,n}\mathbb{E}[V(n+1, k_{n+1})]+ (1 - \hat{P}_{H,n}) \mathbb{E}[V(n+1, k_{n+1})]
+% $$
+% Intuitively, more lost attempts, given a finite number of trials, cannot be better. This means that if:
+% $$
+% V_L(n) > \mathbb{E}[V(n+1, k_{n+1})]
+% $$
+% this implies that:
+% $$
+% V_L(n + 1) > \mathbb{E}[V(n+2, k_{n+2})]
+% $$
+% In other words, if we switch to low boxes, we will not want to switch back. This allows us to write the conditions for switching strategies as:
+% $$
+% V_L(n) = t \hat{P}_{H,n} W_H + (1-t)\hat{P}_{H,n}V_L(n + 1)+ (1 - \hat{P}_{H,n}) V_L(n + 1)
+% $$
+% Which implicitly defines $n$ as a function of $t$, $W_H$, $W_L$, $N$, and $\hat{P}_{H,n}$, all of which are known. Plugging in $V_L(n)$ and rearranging terms, we get an interpretable version:
+% $$
+% 1 - (1 - t)^{N-n} - (1 - t \hat{P}_{H,n}) \left(1 - (1 - t)^{N-n-1}\right) = t \hat{P}_{H,n} \frac{W_H}{W_L}
+% $$
+% Where we can see that the expected lost value of not switching to low boxes this period must equal the expected increase in winnings from trying one more high box. Setting $t = \frac{2}{N}$ and solving for n as a function of N:
+% \begin{align*}
+%   N &= 9, n \approx 4.25 \\
+%   N &= 45, n \approx 24.5
+% \end{align*}
+% Which gives us our benchmark for optimal play. Of note, the ratio $n/N$ is increasing in N, but only slightly.
 
 % In the most general form, we can use Hoeffding's inequality for a distribution-free example of constructing confidence bands around our estimate. In this case, because 0 is a natural lower limit for the games we consider, we are only considering an upper-confidence bound.
 % %

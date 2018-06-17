@@ -64,7 +64,6 @@ class Equilibrium:
         self.aH = aH
         self.aL = aL
         self.c = c
-        self.match_fn = match_fn
         self.y = y # ??? is a random variable??
         self.delta = delta
         self.sigma = sigma
@@ -163,12 +162,32 @@ class Equilibrium:
         bayesian = aH + aL - aH*aL/m
         return np.round(bayesian, 6)
 
+    # def bayesian_lose(self, x, m):
+    #     """ Correct posterior belief after a loss. """
+    #     aH, aL = self.aH, self.aL
+    #     bayesian = aH - (aH - m)*(1 - x*aL)/(1 - x*m)
+    #     return bayesian
+
+    # def repeated_lose(self, x, m, it):
+    #     m_1 = self.bayesian_lose(x,m)
+    #     if it > 1:
+    #         return self.repeated_lose(x, m_1, it - 1)
+    #     return m_1
+
+    # def pos_lose(self, x, m):
+
+    #     # Super rough finite-difference gradient approx.
+    #     grad = (m - self.repeated_lose(x, m, 2))/2
+
+    #     # Add distortion to gradient
+    #     extra = grad * self.distortion
+    #     return self.bayesian_lose(x, m) - extra
+
+
     def pos_lose(self, x, m):
-        """ Posterior belief after a loss. """
         aH, aL = self.aH, self.aL
         bayesian = aH - (aH - m)*(1 - x*aL)/(1 - x*m)
-        behavioral = bayesian - (m - aL)*self.distortion
-        return np.round(behavioral, 6)
+        return self.aL + (bayesian - self.aL) * (1 - self.distortion)
 
     def pick_market(self):
         i = np.argmax(self._values)

@@ -31,6 +31,7 @@ plot(x=counts(apps), Geom.histogram(bincount = 50))
 
 
 # maths
+using Distributions
 
 function p(n, alpha = 2, beta = 2)
     dist = Beta(alpha, beta)
