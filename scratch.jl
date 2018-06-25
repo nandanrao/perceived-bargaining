@@ -33,8 +33,24 @@ plot(x=counts(apps), Geom.histogram(bincount = 50))
 # maths
 using Distributions
 
-function p(n, alpha = 2, beta = 2)
-    dist = Beta(alpha, beta)
+# second order domination? no!
+function p2(n, alpha = 2, beta = 2)
+    dist = Beta(alpha, beta + n)
     fn(x) = (1 - (1 - x)^n) * pdf(dist, x)
-    quadgk(fn, 0.0001, .9999)
+    sqr(f) = (x) -> f(x)^2
+    second = quadgk(sqr(fn), 0.0001, .9999)[1]
+    first = quadgk(fn, .0001, .9999)[1]
+    second - first
 end
+
+# integrate
+function p(n, alpha = 2, beta = 2)
+    dist = Beta(alpha, beta + n)
+    fn(x) = (1 - (1 - x)^n) * pdf(dist, x)
+    quadgk(fn, 0.0001, .9999)[1]
+end
+
+
+##########
+
+using Gadfly, Distributions

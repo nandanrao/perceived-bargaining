@@ -2,6 +2,7 @@
 .ipython
 .jupyter
 .local
+.Rhistory
 
 result/
 # Created by https://www.gitignore.io/api/emacs

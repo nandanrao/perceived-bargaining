@@ -60,7 +60,7 @@ class BeliefTree:
 
 
 class Equilibrium:
-    def __init__(self, aH, aL, y, c, b, delta, sigma, r, B, precision = .1, distortion = 0.0):
+    def __init__(self, aH, aL, y, c, b, delta, sigma, r, B, precision = .1, bias = 0.0):
         self.aH = aH
         self.aL = aL
         self.c = c
@@ -70,7 +70,7 @@ class Equilibrium:
         self.r = r
         self.b = b
         self.B = B*aH # B \in {0, aH}, so just let it be a percentage of aH
-        self.distortion = distortion
+        self.bias = bias
 
         self.A = (self.r + self.sigma)/(1 - self.sigma) + self.delta
 
@@ -162,32 +162,32 @@ class Equilibrium:
         bayesian = aH + aL - aH*aL/m
         return np.round(bayesian, 6)
 
-    # def bayesian_lose(self, x, m):
-    #     """ Correct posterior belief after a loss. """
-    #     aH, aL = self.aH, self.aL
-    #     bayesian = aH - (aH - m)*(1 - x*aL)/(1 - x*m)
-    #     return bayesian
-
-    # def repeated_lose(self, x, m, it):
-    #     m_1 = self.bayesian_lose(x,m)
-    #     if it > 1:
-    #         return self.repeated_lose(x, m_1, it - 1)
-    #     return m_1
-
-    # def pos_lose(self, x, m):
-
-    #     # Super rough finite-difference gradient approx.
-    #     grad = (m - self.repeated_lose(x, m, 2))/2
-
-    #     # Add distortion to gradient
-    #     extra = grad * self.distortion
-    #     return self.bayesian_lose(x, m) - extra
-
-
-    def pos_lose(self, x, m):
+    def bayesian_lose(self, x, m):
+        """ Correct posterior belief after a loss. """
         aH, aL = self.aH, self.aL
         bayesian = aH - (aH - m)*(1 - x*aL)/(1 - x*m)
-        return self.aL + (bayesian - self.aL) * (1 - self.distortion)
+        return bayesian
+
+    def repeated_lose(self, x, m, it):
+        m_1 = self.bayesian_lose(x,m)
+        if it > 1:
+            return self.repeated_lose(x, m_1, it - 1)
+        return m_1
+
+    def pos_lose(self, x, m):
+
+        # Super rough finite-difference gradient approx.
+        grad = (m - self.repeated_lose(x, m, 2))/2
+
+        # Add bias to gradient
+        extra = grad * self.bias
+        return self.bayesian_lose(x, m) - extra
+
+
+    # def pos_lose(self, x, m):
+    #     aH, aL = self.aH, self.aL
+    #     bayesian = aH - (aH - m)*(1 - x*aL)/(1 - x*m)
+    #     return self.aL + (bayesian - self.aL) * (1 - self.bias)
 
     def pick_market(self):
         i = np.argmax(self._values)
@@ -282,13 +282,64 @@ class Equilibrium:
             high = self.equilibrium(max_depth, BeliefTree(mH, uH, eH), it+1)
         return tree.add_child(low).add_child(high)
 
-
-    def plot_wages(self, skill = 'H'):
-        if not self.belief_tree:
-            raise InequilibriumError('You must first find equilibrium before getting unemployment')
-
+    def _get_wages(self, skill):
         i = 0 if skill == 'L' else 1
         amts = [w[i] for w in self._wages.values()]
         arr = sorted(list(zip(self._wages.keys(), amts)),
                      key = lambda x: -x[0])
+        return arr
+
+    def get_wage_distribution(self, eps = 0.025):
+        L = {k:v for k,v in self._get_wages('L')}
+        H = {k:v for k,v in self._get_wages('H')}
+        d = merge_sum(L, H)
+        wages, probs = list(d.keys()), list(d.values())
+        probs = probs/sum(probs)
+        n = 100000
+        a = np.random.choice(wages, n, p = probs)
+        a = a + np.random.normal(0, eps, n)
+        return 1/a
+
+    def get_gini(self):
+        a = self.get_wage_distribution(0)
+        return gini(a)
+
+    def plot_wages(self, skill = 'H'):
+        if not self.belief_tree:
+            raise InequilibriumError('You must first find equilibrium before getting unemployment')
+        arr = self._get_wages(skill)
         return pd.DataFrame(arr).plot.bar(x = 0, y = 1)
+
+
+from copy import deepcopy
+def merge_sum(d1, d2):
+    n = deepcopy(d1)
+    for k in d2:
+        if n.get(k):
+            n[k] += d2[k]
+        else:
+            n[k] = d2[k]
+    return n
+
+
+def gini(array):
+    """Calculate the Gini coefficient of a numpy array."""
+    # based on bottom eq:
+    # http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
+    # from:
+    # http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm
+    # All values are treated equally, arrays must be 1d:
+    array = array.flatten()
+    if np.amin(array) < 0:
+        # Values cannot be negative:
+        array -= np.amin(array)
+    # Values cannot be 0:
+    array += 0.0000001
+    # Values must be sorted:
+    array = np.sort(array)
+    # Index per array element:
+    index = np.arange(1,array.shape[0]+1)
+    # Number of array elements:
+    n = array.shape[0]
+    # Gini coefficient:
+    return ((np.sum((2 * index - n  - 1) * array)) / (n * np.sum(array)))

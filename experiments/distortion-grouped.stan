@@ -1,47 +1,59 @@
 data {
   /* int<lower=2> N; // fails */
   int<lower=2> M; // participants
-  real scale_eps;
-  real cost_sd;
+  real penalty;
+  real sd_cost_shape;
+  real sd_cost_scale;
+  real sd_epsilon_shape;
+  real sd_epsilon_scale;
+  real rho_shape;
+  real rho_scale;
+  real mean_epsilon_nu;
   real mean_cost_nu;
+  real mean_cost_center;
   int fraction;
   int N[M]; // rolls
   int G[M]; // group assignment
-  real roll_cost[M];
+  real prize[M];
+  real roll_time[M];
 }
 
 parameters {
-nn  /* real<lower=0, upper=1> p; */
-  real<lower=0, upper=1> p[M];
-  real<lower=0> cost[M];
   real<lower=0> mean_cost;
-  /* real<lower=0> sd_cost; */
-  /* real<lower=0> scale_cost; */
-  real<lower=0> epsilon[2];
+  real<lower=0> sd_cost;
+  real<lower=0> rho;
+  real<lower=0> cost[M];
+  real<lower=0> sd_epsilon[2];
+  real<lower=0> mean_epsilon[2];
+  real<lower=0> epsilon[M];
+  /* real<lower=0, upper=1> p[M]; */
 }
 
 model {
-  /* alpha_1 ~ gamma(10,10); */
-  /* beta_1 ~ gamma(10,10); */
-  /* alpha_2 ~ gamma(10,10); */
-  /* beta_2 ~ gamma(10,10); */
-  /* t ~ beta(2,10); */
-  /* sigma_e ~ invgamma(10, 10) */
-
   for (m in 1:M) {
     real dif;
-    real p_distorted;
     real cost_fractions;
+    real p;
 
-    mean_cost ~ cauchy(0, mean_cost_nu);
-    cost[m] ~ normal(mean_cost, cost_sd);
-    cost_fractions = cost[m] / fraction;
+    mean_cost ~ cauchy(mean_cost_center, mean_cost_nu);
+    sd_cost ~ inv_gamma(sd_cost_shape, sd_cost_scale);
 
-    epsilon[G[m]] ~ cauchy(0, scale_eps);
+    rho ~ gamma(rho_shape, rho_scale);
 
-    p[m] ~ beta(1, 1 + (N[m] * (1 + epsilon[G[m]])));
+    cost[m] * fraction ~ normal(mean_cost, sd_cost);
 
-    dif = roll_cost[m] - ( p[m] / cost_fractions );
-    target += -(dif * dif);
+    sd_epsilon[G[m]] ~ inv_gamma(sd_epsilon_shape, sd_epsilon_scale);
+    mean_epsilon[G[m]] ~ cauchy(0, mean_epsilon_nu);
+    epsilon[m] ~ normal(mean_epsilon[G[m]], sd_epsilon[G[m]]);
+
+    /* p[m] ~ beta(1, 1 + (N[m] * (1 + epsilon[m]))); */
+    p = 1/(1 + N[m] * (1 + epsilon[m]));
+
+    dif = roll_time[m]*cost[m] - (p*prize[m]^(1-rho) - p + 1)^(1/(1 - rho));
+    /* dif = prize[m]^p - roll_time[m]*cost_fractions; */
+    /* dif = (roll_time[m]/prize[m]) - ( p^(1/(1-rho)) / cost[m] ); */
+    /* dif = (roll_time[m]/prize[m]) - ( p / cost[m] ); */
+
+    target += -penalty * (dif * dif);
   }
 }

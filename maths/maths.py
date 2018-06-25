@@ -1,3 +1,6 @@
+import numpy as np
+from scipy.stats import beta
+
 from sympy import symbols, plot_implicit, Eq, solve, S, solveset
 n,p = symbols('n p')
 
@@ -14,9 +17,139 @@ ps = [s[1] if len(s) > 1 else s[0] for s in sols]
 
 
 
+################################
+# S/F GAME ANALYSIS
+################################
+
+from sympy.solvers.inequalities import solve_univariate_inequality
+from sympy import *
+import numpy as np
+
+x, n, W = symbols('x n W')
+
+post = lambda n: 1 / (1 + 1 + n)
+
+## Log Utility
+c = exp( post(n) * log(W))
+e = post(x*n) * log(W) - log(c/x)
+
+a = np.ones((20, 20, 20))
+for i,n_inner in enumerate(np.arange(1, 200, 10)):
+    for j,W_inner in enumerate(np.arange(1, 200, 10)):
+        f = lambdify(x, e.subs(W, W_inner).subs(n, n_inner), 'numpy')
+        a[i, j, :] = f(np.linspace(1.2, 10, 20))
+
+assert(len(a[a<0]) == 0)
+
+## LOG PROOF
+
+e = x*W**(1 / (x*n)) - W**(1/n)
+
+for i,n_inner in enumerate(np.arange(1, 200, 10)):
+    for j,W_inner in enumerate(np.arange(1, 200, 10)):
+        f = lambdify(x, e.subs(W, W_inner).subs(n, n_inner), 'numpy')
+        a[i, j, :] = f(np.linspace(1.2, 10, 20))
+
+# FAILS: n = 1 no longer works!!!
+assert(len(a[a<0]) == 0)
+
+
+## CRRA UTILITY
+rho = Symbol('rho')
+u = lambda c: (c**(1 - rho) - 1)/(1 - rho)
+post = lambda n: 1 / (1 + 1 + n)
+c = (post(n) * u(W) * (1 - rho) + 1)**(1/(1 - rho))
+
+e = (post(n*x) * u(W) - u(c/x)).subs(W, 500)
+
+a = np.ones((20, 20, 20))
+for i,n_inner in enumerate(np.arange(1, 200, 10)):
+    for j,x_inner in enumerate(np.arange(2, 200, 10)):
+        f = lambdify(rho, e.subs(x, x_inner).subs(n, n_inner), 'numpy')
+        a[i, j, :] = f(np.linspace(-3, 30, 20))
+
+assert(len(a[a < 0]) == 0)
+
+
+# CRRA PROOF
+e = x**rho * (1/n)**(1/(1 - rho)) - (1/n)**(1/(1-rho))
+
+e = x*post(x*n)**(1/(1 - rho)) - post(n)**(1/(1-rho))
+e = x**(1-rho)*post(x*n) - post(n)
+
+e = e.subs(W, 500)
+a = np.ones((20, 20, 20))
+for i,n_inner in enumerate(np.arange(20, 220, 10)):
+    for j,x_inner in enumerate(np.arange(2, 200, 10)):
+        f = lambdify(rho, e.subs(x, x_inner).subs(n, n_inner), 'numpy')
+        a[i, j, :] = f(np.linspace(-3, 3, 20))
+
+# should be 0!
+(np.linspace(-3,3,20)[np.argwhere(a < 0)[:, 2]] < 0).sum()
+(np.linspace(-3,3,20)[np.argwhere(a < 0)[:, 2]] > 1).sum()
+
+
+
+## THIS IS WITH INTEGRATING BETA PDF
+rho = Symbol('rho')
+u = lambda c: (c**(1 - rho) - 1)/(1 - rho)
+post = lambda n: 1 / (1 + 1 + n)
+c = (post(n) * u(W) * (1 - rho) + 1)**(1/(1 - rho))
+
+e = (post(n*x) * u(W) - u(c/x)).subs(W, 500)
+
+a = np.ones((20, 20, 20))
+for i,n_inner in enumerate(np.arange(1, 200, 10)):
+    for j,x_inner in enumerate(np.arange(2, 200, 10)):
+        f = lambdify(rho, e.subs(x, x_inner).subs(n, n_inner), 'numpy')
+        a[i, j, :] = f(np.linspace(-3, 30, 20))
+
+assert(len(a[a < 0]) == 0)
+
+
+
+
+# good sign...
+e = (post(n*x) * u(W) - u(c/x)).subs(W, 500).subs(n, 1)
+f = lambdify(x, e, 'numpy')
+g = lambdify(rho, f(np.linspace(1.01, 20, 10)), 'numpy')
+
+m = g(np.linspace(1.2, 20, 20))
+
+
+domain = Interval.Lopen(1, 4)
+
+e = (post(n*x) * u(W) > u(c/x)).subs(x, 5).subs(n, 6).subs(W, 50)
+
+solve_univariate_inequality(e, rho, domain = domain)
+
+
+
+c = exp(post(n) * log(W))
+
+
+
+
+from sympy import Interval
+rho = Symbol('rho')
+x, n, W = symbols('x n W')
+
+e = (n/((2 + n*x)**2)) * (1/(rho - 1)) <= 1/(x**rho)
+from sympy import Union
+
+domain = Union(Interval.Ropen(-50, 1), Interval.Lopen(1, 4))
+
+solve_univariate_inequality(e.subs(n, 6).subs(x, 50), rho, domain = domain)
+solveset(e, rho, domain = domain)
+
+
+c = np.exp(post(n) * np.log(W))
+np.log(c/x)
+post(n*x)*np.log(W)
+
 
 ##################################
-# implicit H/L game solution
+# implicit H/L game solution -- WRONG
 ##################################
 t,N,n = symbols('t N n')
 

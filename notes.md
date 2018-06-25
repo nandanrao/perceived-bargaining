@@ -63,7 +63,7 @@ One might propose trading a directed-search framework for a stopping-time proble
 
 * Prelec 2010 --> difference in judgement before they place bets and after.
 * Bastardi, Ulmann and Ross 2011 --> same priors, different experiences, change their belief based on choices.
-* Hansen and Sargent Robustness -- 
+* Hansen and Sargent Robustness --
 * Thaler "overconfidence" DeBondt, W.F., Thaler, R., 1995. Financial decision-making in markets and firms: a behavioral perspective
 * Kahneman, D., & Tversky, A. (2000). Choices, values, and frames
 * Pearl, J. (1988). Probabilistic reasoning in intelligent systems: Networks of plausible inference
@@ -78,14 +78,30 @@ https://github.com/gsbDBI/ExperimentData
 # Writing
 
 * Inequality - erosion of wages for the middle class
-* Narratives and perceptions of the market -- globalized, competetive, cutthroat place >> political/popular discourse analysis? 
-* Can one's perceived bargaining power influence this? 
-* Rejections as source of erosion of power. 
+* Narratives and perceptions of the market -- globalized, competetive, cutthroat place >> political/popular discourse analysis?
+* Can one's perceived bargaining power influence this?
+* Rejections as source of erosion of power.
 * Statistical quirks with 0.
-* The self and rejections. 
+* The self and rejections.
 
 
 
+# TODO THIS WEEK
+
+* Finish writing intro >> numerocity/biases. Theoretical foundation for hypothesis, literature in behavioral world.
+
+* Finish proof of 3rd experiment and write down empirical model for experiment
+
+* Create risk-aversion test in 1st experiment, re-run and get results.
+
+* Write up 1st experiment with results.
+
+* Write up theory behind equilibrium model and background literature (simple).
+
+* Write up equilibrium model and extension.
 
 
+## WRITING
 
+* Introduce and specify Gonzales 2010
+* Make conclusions.
