@@ -1,0 +1,459 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nty/global/}
+    \entry{albrecht2006}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=cb906ec3c60ad8b4e4647d166df6d251}{%
+           family={Albrecht},
+           familyi={A\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+        {{uniquename=0,hash=f776791c8dd4b9f8022dda859bb4b493}{%
+           family={Gautier},
+           familyi={G\bibinitperiod},
+           given={Pieter\bibnamedelima A},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{uniquename=0,hash=c8e04d7f2d8e7844e3a32691a0d48f07}{%
+           family={Vroman},
+           familyi={V\bibinitperiod},
+           given={Susan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley-Blackwell}%
+      }
+      \strng{namehash}{28c2efe53412115df20269816934be0d}
+      \strng{fullhash}{28c2efe53412115df20269816934be0d}
+      \strng{authornamehash}{28c2efe53412115df20269816934be0d}
+      \strng{authorfullhash}{28c2efe53412115df20269816934be0d}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{4}
+      \field{title}{Equilibrium directed search with multiple applications}
+      \field{volume}{73}
+      \field{year}{2006}
+      \field{pages}{869\bibrangedash 891}
+      \range{pages}{23}
+    \endentry
+    \entry{galenianos2009}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=2a1ca558533c437c621ac5078cd5163f}{%
+           family={Galenianos},
+           familyi={G\bibinitperiod},
+           given={Manolis},
+           giveni={M\bibinitperiod}}}%
+        {{uniquename=0,hash=5d478823c362499b97243f4b0f0743dd}{%
+           family={Kircher},
+           familyi={K\bibinitperiod},
+           given={Philipp},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{4fb8c1ea14f80d3c61c02f1304aad4ba}
+      \strng{fullhash}{4fb8c1ea14f80d3c61c02f1304aad4ba}
+      \strng{authornamehash}{4fb8c1ea14f80d3c61c02f1304aad4ba}
+      \strng{authorfullhash}{4fb8c1ea14f80d3c61c02f1304aad4ba}
+      \field{sortinit}{G}
+      \field{sortinithash}{618d986594b7198ba52cf8b00d348f3f}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Economic Theory}
+      \field{number}{2}
+      \field{title}{Directed search with multiple job applications}
+      \field{volume}{144}
+      \field{year}{2009}
+      \field{pages}{445\bibrangedash 471}
+      \range{pages}{27}
+    \endentry
+    \entry{gonzalez2010}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=23d911d620dff43a929f4b58f75cecf7}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Francisco\bibnamedelima M},
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=3483ae500e0b18ea274def4206072a7c}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Shouyong},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{fullhash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{authornamehash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{authorfullhash}{e342020d47faad318f0d33551ac2deb3}
+      \field{sortinit}{G}
+      \field{sortinithash}{618d986594b7198ba52cf8b00d348f3f}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica}
+      \field{number}{2}
+      \field{title}{An equilibrium theory of learning, search, and wages}
+      \field{volume}{78}
+      \field{year}{2010}
+      \field{pages}{509\bibrangedash 537}
+      \range{pages}{29}
+    \endentry
+    \entry{hertwig2004}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,hash=cee6d5714f3a1251e9aed4b888a4d4d9}{%
+           family={Hertwig},
+           familyi={H\bibinitperiod},
+           given={Ralph},
+           giveni={R\bibinitperiod}}}%
+        {{uniquename=0,hash=369246b9d93304143bf7bcabe70cb7af}{%
+           family={Barron},
+           familyi={B\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod}}}%
+        {{uniquename=0,hash=67db1c533fb68a63e71606b0ccd85a2b}{%
+           family={Weber},
+           familyi={W\bibinitperiod},
+           given={Elke\bibnamedelima U},
+           giveni={E\bibinitperiod\bibinitdelim U\bibinitperiod}}}%
+        {{uniquename=0,hash=7c9bc3c1f790c69f4e9b72e96d79b2ed}{%
+           family={Erev},
+           familyi={E\bibinitperiod},
+           given={Ido},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Sage CA: Los Angeles, CA}%
+      }
+      \strng{namehash}{de87aeda3a2c415131b6fcda3a4a232c}
+      \strng{fullhash}{f469b2f877ef989e7897c2b87c016b18}
+      \strng{authornamehash}{de87aeda3a2c415131b6fcda3a4a232c}
+      \strng{authorfullhash}{f469b2f877ef989e7897c2b87c016b18}
+      \field{sortinit}{H}
+      \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological science}
+      \field{number}{8}
+      \field{title}{Decisions from experience and the effect of rare events in risky choice}
+      \field{volume}{15}
+      \field{year}{2004}
+      \field{pages}{534\bibrangedash 539}
+      \range{pages}{6}
+    \endentry
+    \entry{kahneman1986}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=d0dcea81f8587e7d56bb5dbe34a39d6c}{%
+           family={Kahneman},
+           familyi={K\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{uniquename=2,hash=fa760cae8ba6a11476b818d91d3c86d8}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Dale\bibnamedelima T},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{06c17a71ccc338eb2d276767bd19aa59}
+      \strng{fullhash}{06c17a71ccc338eb2d276767bd19aa59}
+      \strng{authornamehash}{06c17a71ccc338eb2d276767bd19aa59}
+      \strng{authorfullhash}{06c17a71ccc338eb2d276767bd19aa59}
+      \field{sortinit}{K}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological review}
+      \field{number}{2}
+      \field{title}{Norm theory: Comparing reality to its alternatives.}
+      \field{volume}{93}
+      \field{year}{1986}
+      \field{pages}{136}
+      \range{pages}{1}
+    \endentry
+    \entry{kahneman1979}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=d0dcea81f8587e7d56bb5dbe34a39d6c}{%
+           family={Kahneman},
+           familyi={K\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{uniquename=0,hash=031d0d5f9391d970f6f089af958f701d}{%
+           family={Tversky},
+           familyi={T\bibinitperiod},
+           given={Amos},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {[Wiley, Econometric Society]}%
+      }
+      \strng{namehash}{d3bcf557edbcd57c46dc3a22d1e8ff94}
+      \strng{fullhash}{d3bcf557edbcd57c46dc3a22d1e8ff94}
+      \strng{authornamehash}{d3bcf557edbcd57c46dc3a22d1e8ff94}
+      \strng{authorfullhash}{d3bcf557edbcd57c46dc3a22d1e8ff94}
+      \field{sortinit}{K}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00129682, 14680262}
+      \field{journaltitle}{Econometrica}
+      \field{number}{2}
+      \field{title}{Prospect Theory: An Analysis of Decision under Risk}
+      \field{volume}{47}
+      \field{year}{1979}
+      \field{pages}{263\bibrangedash 291}
+      \range{pages}{29}
+      \verb{url}
+      \verb http://www.jstor.org/stable/1914185
+      \endverb
+    \endentry
+    \entry{miller1989}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=2,hash=bd8df60436408ed90ecb0495fca3bf10}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Dale\bibnamedelima T.},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{uniquename=0,hash=17b453782e6a8d5287f951118416535f}{%
+           family={Turnbull},
+           familyi={T\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{uniquename=0,hash=159d9951c3fbc67b659e8e6270f932df}{%
+           family={McFarland},
+           familyi={M\bibinitperiod},
+           given={Cathy},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{825bc98cf89bf99df61dec20f412d9fd}
+      \strng{fullhash}{825bc98cf89bf99df61dec20f412d9fd}
+      \strng{authornamehash}{825bc98cf89bf99df61dec20f412d9fd}
+      \strng{authorfullhash}{825bc98cf89bf99df61dec20f412d9fd}
+      \field{sortinit}{M}
+      \field{sortinithash}{c26a05ef03e4429073ed5c825140fac3}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{4}
+      \field{journaltitle}{Journal of Personality and Social Psychology}
+      \field{title}{When a coincidence is suspicious: The role of mental simulation.}
+      \field{volume}{57}
+      \field{year}{1989}
+      \verb{doi}
+      \verb 10.1037/0022-3514.57.4.581
+      \endverb
+      \verb{url}
+      \verb http://gen.lib.rus.ec/scimag/index.php?s=10.1037/0022-3514.57.4.581
+      \endverb
+    \endentry
+    \entry{pelham1994}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=aed45a96ca45ee196b51b0623c818aaa}{%
+           family={Pelham},
+           familyi={P\bibinitperiod},
+           given={Brett\bibnamedelima W},
+           giveni={B\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{uniquename=0,hash=9afd10f3aaa1a374adbe87c4b43a1739}{%
+           family={Sumarta},
+           familyi={S\bibinitperiod},
+           given={Tin\bibnamedelima T},
+           giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{uniquename=0,hash=ed4fbb71ad63a9039d897b045c71d183}{%
+           family={Myaskovsky},
+           familyi={M\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{1e78383531bcdcb22f2028b37fdaa5b2}
+      \strng{fullhash}{1e78383531bcdcb22f2028b37fdaa5b2}
+      \strng{authornamehash}{1e78383531bcdcb22f2028b37fdaa5b2}
+      \strng{authorfullhash}{1e78383531bcdcb22f2028b37fdaa5b2}
+      \field{sortinit}{P}
+      \field{sortinithash}{24100cef455d7974167575052c29146e}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cognitive Psychology}
+      \field{number}{2}
+      \field{title}{The easy path from many to much: The numerosity heuristic}
+      \field{volume}{26}
+      \field{year}{1994}
+      \field{pages}{103\bibrangedash 133}
+      \range{pages}{31}
+    \endentry
+    \entry{tversky1973}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=031d0d5f9391d970f6f089af958f701d}{%
+           family={Tversky},
+           familyi={T\bibinitperiod},
+           given={Amos},
+           giveni={A\bibinitperiod}}}%
+        {{uniquename=0,hash=d0dcea81f8587e7d56bb5dbe34a39d6c}{%
+           family={Kahneman},
+           familyi={K\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e03b8c64a28ec0d8081c6f4ded219ba3}
+      \strng{fullhash}{e03b8c64a28ec0d8081c6f4ded219ba3}
+      \strng{authornamehash}{e03b8c64a28ec0d8081c6f4ded219ba3}
+      \strng{authorfullhash}{e03b8c64a28ec0d8081c6f4ded219ba3}
+      \field{sortinit}{T}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0010-0285}
+      \field{journaltitle}{Cognitive Psychology}
+      \field{number}{2}
+      \field{title}{Availability: A heuristic for judging frequency and probability}
+      \field{volume}{5}
+      \field{year}{1973}
+      \field{pages}{207\bibrangedash 232}
+      \range{pages}{26}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0010-0285(73)90033-9
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/0010028573900339
+      \endverb
+    \endentry
+    \entry{wolfe1941}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=4235a28414841c173ee90ec900b2c408}{%
+           family={Wolfe},
+           familyi={W\bibinitperiod},
+           given={JOHN\bibnamedelima B},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=dfc4bf5944b58bde108fbaf99ccbf95b}{%
+           family={Kaplon},
+           familyi={K\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Williams \& Wilkins Company}%
+      }
+      \strng{namehash}{bfa24dac5bff5f067ce004dd2b6f7888}
+      \strng{fullhash}{bfa24dac5bff5f067ce004dd2b6f7888}
+      \strng{authornamehash}{bfa24dac5bff5f067ce004dd2b6f7888}
+      \strng{authorfullhash}{bfa24dac5bff5f067ce004dd2b6f7888}
+      \field{sortinit}{W}
+      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Comparative Psychology}
+      \field{number}{2}
+      \field{title}{Effect of amount of reward and consummative activity on learning in chickens.}
+      \field{volume}{31}
+      \field{year}{1941}
+      \field{pages}{353}
+      \range{pages}{1}
+    \endentry
+    \entry{wolthoff2017}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=0355ecdded0ce5b9f24cd5e4f93424ea}{%
+           family={Wolthoff},
+           familyi={W\bibinitperiod},
+           given={Ronald},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{0355ecdded0ce5b9f24cd5e4f93424ea}
+      \strng{fullhash}{0355ecdded0ce5b9f24cd5e4f93424ea}
+      \strng{authornamehash}{0355ecdded0ce5b9f24cd5e4f93424ea}
+      \strng{authorfullhash}{0355ecdded0ce5b9f24cd5e4f93424ea}
+      \field{sortinit}{W}
+      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{2}
+      \field{title}{Applications and Interviews: Firms\x{fffd}\x{fffd}\x{fffd} Recruiting Decisions in a Frictional Labour Market}
+      \field{volume}{85}
+      \field{year}{2017}
+      \field{pages}{1314\bibrangedash 1351}
+      \range{pages}{38}
+    \endentry
+    \entry{wright2017}{report}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,hash=70c7d918b2b858ea6e363a102915d520}{%
+           family={Wright},
+           familyi={W\bibinitperiod},
+           given={Randall},
+           giveni={R\bibinitperiod}}}%
+        {{uniquename=0,hash=5d478823c362499b97243f4b0f0743dd}{%
+           family={Kircher},
+           familyi={K\bibinitperiod},
+           given={Philipp},
+           giveni={P\bibinitperiod}}}%
+        {{uniquename=0,hash=56de1cd181afaa16bfb5b96f9367231b}{%
+           family={Jul\^{\i{}}en},
+           familyi={J\bibinitperiod},
+           given={Benoit},
+           giveni={B\bibinitperiod}}}%
+        {{uniquename=0,hash=6ddbbd4da1ad4e9e94f3f2f12045ddb2}{%
+           family={Guerrieri},
+           familyi={G\bibinitperiod},
+           given={Veronica},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \strng{namehash}{dfc55f3bcf147602d4b22229c89b6ba4}
+      \strng{fullhash}{783308d2b463be5110618693c5f707f4}
+      \strng{authornamehash}{dfc55f3bcf147602d4b22229c89b6ba4}
+      \strng{authorfullhash}{783308d2b463be5110618693c5f707f4}
+      \field{sortinit}{W}
+      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Directed search: A guided tour}
+      \field{type}{techreport}
+      \field{year}{2017}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
