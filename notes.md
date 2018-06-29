@@ -105,3 +105,10 @@ https://github.com/gsbDBI/ExperimentData
 
 * Introduce and specify Gonzales 2010
 * Make conclusions.
+
+
+## Larbi's Feedback
+
+* Contest literature >> Azmat, paper in economic journal on "running"
+* Add utility to first experiment proof
+* Make clear that practise is practise

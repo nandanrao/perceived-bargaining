@@ -10,13 +10,13 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{Nandan Rao}
-\lhead{Applying for jobs. When do you give up? }
+\rhead{}
+\lhead{ Numerocity Biases and the Perceived Chances of Getting a Job }
 \rfoot{\thepage}
 
 \begin{document}
 
-\title{ Applying for jobs. When do you give up?  }
+\title{ Numerocity Biases and the Perceived Chances of Getting a Job: Experimental Evidence and Implications for Directed Search }
 
 \author{Nandan Rao}
 
@@ -24,43 +24,37 @@
 
 \begin{abstract}
 
-In the labor market, a clear implication of internet-based job applications is the ability for every worker to apply to more jobs without a corresponding increase in the firms' ability to interview more workers. In this paper I consider the interaction between this increased congestion and the search behavior of workers.
+In the labor market, a clear implication of internet-based job applications is the ability of every worker to apply to more jobs without a corresponding increase in the firms' capacity to interview more workers. In this paper, I consider the interaction between the congestion caused by this imbalance and the search behavior of workers.
 
-I hypothesize, and show preliminary experimental evidence that, statistical biases related to numerocity affect probabilistic judgement in such a way as to cause misjudgements in this context: faster ``applying'' is shown to potentially lead to earlier ``quitting.'' The suboptimality of this behavior is also proved.
+I hypothesize, and show preliminary experimental evidence that, statistical biases related to numerocity can affect probabilistic judgement in such a way as to cause misjudgements: faster ``applying'' is shown to potentially lead to suboptimal early ``quitting.''
 
-I use estimations from the experimental evidence to calibrate a lightly extended version of the equilibrium directed search model of \cite{gonzalez2010}. Simulations show that this bias causes a hollowing-out of the middle class from the wage distribution, as high-skill workers who experience rejection direct their search to jobs with lower-than-optimal wages.
+I use estimations from the experimental evidence to calibrate a slightly extended version of the equilibrium directed search model of \cite{gonzalez2010}. Simulations show that this bias causes a hollowing-out of the middle class from the wage distribution, as high-skill workers who experience rejection direct their search to jobs with lower-than-optimal wages.
 
 \end{abstract}
 
-
-
-% This implies that a seemingly harmless technological improvement can have potential negative outcomes on the entire wage distribution due to the misjudgements of individual job seekers.
-
 \section{Introduction}
 
-Imagine a job seeker. They spend their first week looking and applying to jobs, and they submit their aplication to three different positions, all of which fit the profile of their ``dream job''. The next week comes around and they have not heard back from any of the firms. Should they continue to apply to the same type of job, or should they try to look for a job which might be easier to get?
+Imagine a job seeker. They spend their first week looking and applying to jobs, and they submit their application to three different positions, all of which fit the profile of their ``dream job''. The next week comes around and they have not heard back from any of the firms. Should they continue to apply to the same type of job, or should they try to look for a job which might be easier to get?
 
-Now consider an alternate universe, where the same job seekers spends their first week looking and applying to jobs, but now the time it takes to find and apply to each job has gone down, and they submit their application to 15 different positions, all of which still fit the profile of ``dream job''. The next week comes around, and they have not heard back from any of the firms. Should they continue to the same type of job?
+Now consider an alternate universe, where the same job seekers spends their first week looking and applying to jobs, but now the time it takes to find and apply to each job has gone down, and they submit their application to 15 different positions, all of which still fit the profile of ``dream job''. The next week comes around, and they have not heard back from any of the firms. Should they continue to apply to the same type of job?
 
 This paper considers the way in which job seekers react to the above scenario: a technology change that reduces the cost of applying to jobs.
 
-Recent history is rife with technologies that lower the cost of job search, from the fax machine to the internet to the integrated profile-cum-job-boards such as LinkedIn. It is not hard to imagine that yet more such technological changes await us in the near future. Given a reduction of costs, be they time or money, the number of applications sent per job seeker will, ceteris parabis, increase. As interviewing is still relatively unmediated by ``time-saving'' technologies, it is clear that the number of outright rejections the average job-seeker receives must naturally increase along with an increase in the number of applications the average job-seeker sends.
+Recent history is rife with technologies that lower the cost of job searching, from the fax machine to the internet to integrated profile-cum-job-boards such as LinkedIn. Given a reduction of costs, be they time or money, the number of applications sent per job seeker will, ceteris parabis, increase. As interviewing is still relatively unmediated by ``time-saving'' technologies, it is clear that the number of outright rejections the average job-seeker receives must increase along with an increase in the number of applications the average job-seeker sends.
 
-It is worth noting the difference between a technology lowering search costs and a technology lowering application costs. The cost of applying for a job consists of two parts: the cost of searching and the cost of actually sending the application. If one lowers the cost of searching, one would expect better-targeted applications. Lowering the cost of sending each marginal application, however, regardless of which part of the process changes, has an additional effect which is independent of the targeting: more applications are sent. I will not consider the effect of better-targeting applications in this paper, focusing instead on the potential effects of the increase in application volume independently of any other effects.
+It is worth noting the difference between a technology lowering search costs and a technology lowering application costs. The cost of applying for a job consists of two parts: the cost of searching and the cost of actually sending the application. If one lowers the cost of searching, one would expect better-targeted applications. Lowering the cost of applying, whether through reduced search costs or reduced sending costs, has an additional effect, however, which is independent of the targeting: more applications are sent. I will not consider the effect of better-targeting applications in this paper, focusing instead on one potential effect of the increase in application volume in-and-of-itself.
 
-One might argue that probability of acceptance is actually the probability of winning a game which one is playing against all other potential applicants and all potential firms. In this paper I will assume that, in the game-theoretic taxonomy, this is an evolutionary game: there are too many other players to seriously claim that agents rationalize their strategies. Instead, they follow myopic strategies, and these myopic strategies inherently involve the estimatiion of the probability of getting each job before bothering to send the application.
-
-How should we consider, then, the process of a job-seeker estimating the probability of getting a job, should they apply? Let us split the process into two parts:
+How should we consider, then, the process of a job-seeker estimating the probability of getting a job, to which they apply? Let us split the process into two parts:
 
 1. The job seeker gathers, throughout their entire life, from family, friends, and school, a whole host of preconceptions about the state of the world and their own employability. They listen to the news, they hear rumors, they observe the experiencce of peers.
 
-2. The job seeker applies to some jobs, and through the process of applying, learns more about the probability of recieving offers from each kind of job and firm to which they apply.
+2. The job seeker applies to some jobs, and through the process of applying, learns more about the probability of receiving offers from each kind of job and firm to which they apply.
 
 This paper considers only the second part, abtracting away from whatever priors the job seeker has from before, I consider how they update their beliefs through the process of applying.
 
-The hypothesis of this paper is nothing more than ``if you get a lot of rejections when applying for a certain type of job, your think your chances of getting such a job are low.'' In and of itself, this is not very controversial and, Ceteris Paribus, this is exactly what any model of rationality would predict. The hypothesis here, however, is that even Ceteris very-much-not-Paribus, and even when one's chances of geting a job are not actually lower, job seekers in the real world might percieve them to be this way and act accordingly, even if it is not in their best interest, when presented with a large number of rejections.
+The hypothesis of this paper is nothing more than ``if you get a lot of rejections when applying for a certain type of job, you think your chances of getting such a job are low.'' This thinking is absolutely correct in relative terms, but very much wrong in absolute terms. I propose that job seekers in the real world often act according to absolute terms, a bias which harms them in the high-numbers game of online interactions.
 
-The paper will proceed as follows: in section 2, I will introduce several theories from decision-theory that could potentially be at-play in this scenario. In sections 3 and 4, I introduce two laboratory experiments to test the way people react to the scenario, prove the optimal reaction, and analyze the results from participants recruited via Amazon's Mechanical Turk. In section 5, I describe an equilibrium model, a slightly extended version of the directed-search model of \cite{gonzalez2010}, and simulate results with parameters calibrated from the laboratory experiments. Finally, in section 6: conclusions and suggestions for further research.
+The paper will proceed as follows: in section 2, I will introduce several theories from decision-theory that could potentially be at-play in this scenario. In section 3, I introduce a laboratory experiment to test the way people react to the scenario, prove the optimal reaction, and analyze the results from participants recruited via Amazon's Mechanical Turk. In section 4, I describe an equilibrium model, a slightly extended version of the directed-search model of \cite{gonzalez2010}, and simulate results with parameters calibrated from the laboratory experiments. Finally, in section 5: conclusions and suggestions for further research.
 
 
 \section { Judging Probabilities }
@@ -69,111 +63,51 @@ Does the way in which we, as humans, perform probabilistic calculations change a
 
 \subsection{Ratio Bias}
 
-A short family tree: Availability Hueristic (\cite{tversky1973}) begets Norm Theory (\cite{kahneman1986}) begets the Ratio Bias (\cite{miller1989}). Whereas the availability hueristic relates to memory, the ratio bias is purely about reported statistics, given in the moment.
+A short family tree: Availability Heuristic (\cite{tversky1973}) begets Norm Theory (\cite{kahneman1986}) begets the Ratio Bias (\cite{miller1989}). Whereas the Availability Heuristic relates to memory, the ratio bias is purely about reported statistics, given in the moment.
 
-The idiomatic ratio bias experiment goes as follows: there is a kid who really likes chocolate chip cookies, and thinks (like everyone) that oatmeal cookies are inferior. The kid goes to the cookie jar where there is 1 (10) chocolate cookie, and 19 (190) oatmeal cookies and picks one, supposedly without looking (as is the rule in the house). He comes back with a chocolate-chip cookie. Do you think he cheated (and looked)? Respondents answer this question differently based on whether there are 20 cookies or 200 cookies, even though the ratios are the same. Specifically, if there is 1 chocolate chip cookie (out of 20), people think it's more likely that the kid cheated (\cite{miller1989}). Often referred to as \textit{denomenator neglect}, there is the sense that we focus on the ``norm'' of the numerator, the size of it, in which 1 is less than 10, and therefore the event seems less likely.
+The idiomatic ratio bias experiment is as follows: there is a kid who really likes chocolate chip cookies, and thinks (like everyone) that oatmeal-raisin cookies are inferior. The kid goes to the cookie jar where there is 1 (10) chocolate cookie, and 19 (190) oatmeal-raisin cookies and picks one, supposedly without looking (as is the rule in the house). He comes back with a chocolate-chip cookie. Do you think he cheated (and looked)? Respondents answer this question differently based on whether there are 20 cookies or 200 cookies, even though the ratios are the same. Specifically, if there is 1 chocolate chip cookie (out of 20), people think it is more likely that the kid cheated (\cite{miller1989}). Often referred to as \textit{denominator neglect}, there is the sense that we focus on the ``norm'' of the numerator, the size of it, in which 1 is less than 10, and therefore the event seems less likely.
 
-\subsection{Numerocity Hueristic}
+\subsection{Numerocity Heuristic}
 
-The origins of this idea can be traced back to a 1941 experiment showing that a kernel of corn, if divided into four pieces, is a more motivating reward for chickens than a single, undivided kernel (\cite{wolfe1941}). Humans, it turns out, are not so different, and systematically confuse numerocity (number of units) for quantity (actual amount). \cite{pelham1994} develops a framework, referred to as the numerocity hueristic, in which this bias is shown to be especially present when individuals attempt to make judgements while under cognitive load, in which case they fall back to numerocity as a rule-of-thumb for determining quantity. This line of research has been explored extensively in the consumer-behavior literature, where preferences are easily shifted based on a changing of scales (cite cite cite).
+The origins of this idea can be traced back to a 1941 experiment showing that a kernel of corn, if divided into four pieces, is a more motivating reward for chickens than a single, undivided kernel (\cite{wolfe1941}). Humans, it turns out, are not so different, and systematically confuse numerocity (number of units) for quantity (actual amount). \cite{pelham1994} develop a framework, referred to as the numerocity heuristic, in which this bias is shown to be especially present when individuals attempt to make judgements while under cognitive load, in which case they fall back on numerocity as a rule-of-thumb for determining quantity. This line of research has been explored extensively in the consumer-behavior literature, where preferences are easily shifted based on a changing of scales (cite cite cite).
 
-Is it plausible that, while deciding on the next job application to send, job seekers use ``number of rejections'' as a hueristic for ``expected value of sending one more application'', not fully taking into consideration the denomenator (time spent on each application) while doing so? I propose that this is exactly the case.
+Is it plausible that, while deciding on the next job application to send, job seekers use ``number of rejections'' as a heuristic for ``expected value of sending one more application'', not fully taking into consideration the denominator (time spent on each application) while doing so? I propose that this is exactly the case.
 
 \subsection{Learning by Experience}
 
-What about the way in which we judge the probability of rare events? It is worth noting that our context here is decidedly different from the one considered in prospect theory and its derivatives (\cite{kahneman1979}), which concern the judgement of probabilities based on external knowlege, primarily given via descriptions of the events. This distinction between \textit{decisions from description} and \textit{decisions from experience} is made in \cite{hertwig2004}, which gives a good overview of the field as well as decisive experiments which show the way in which decision-makers act differently, even oppositely, based on whether they learned about the probability of an event through trial-and-error or through written description.
+What about the way in which we judge the probability of rare events? It is worth noting that our context here is decidedly different from the one considered in prospect theory and its derivatives (\cite{kahneman1979}), which concern the judgement of probabilities based on external knowledge, primarily given via descriptions of the events. This distinction between \textit{decisions from description} and \textit{decisions from experience} is made in \cite{hertwig2004}, which gives a good overview of the field as well as decisive experiments that show the way in which decision-makers act differently, even oppositely, based on whether they learned about the probability of an event through trial-and-error or through written description.
 
-Specifically, and opposed to Prospect theory, learning by experience is shown to cause people to \textit{underweight} the probability of rare events, both positive and negative. Note, that this seems very much to be independent of the Availability hueristic, which cites our ability to pull a representative example from memory (\cite{tversky1973}), as this result holds for experiments in which the participant has, immediately before, experienced both outcomes, and for ones in which they have not.
+Specifically, and opposed to Prospect Theory, learning by experience is shown to cause people to \textit{underweight} the probability of rare events, both positive and negative. Note that this seems to be very much independent of the Availability Heuristic, which cites our ability to pull a representative example from memory (\cite{tversky1973}), as this result holds for experiments in which the participant has, immediately before, experienced both outcomes, and for ones in which they have not.
 
-While this is in-and-of-itself interesting and applicable to this research, \cite{hertwig2004} notes one other curious fact that is not given an explanation: in the cited experiments, users are allows to ``sample'' from a given one-armed bandit as much as they like, a practise round without any specific end, before ``playing for keeps.'' Users, it seems, chronically undersampled: they quit practising sometimes before even coming accross the a rare outcome with a very large positive or negative reward, the knowledge of which would potentially change their behavior. 
+While this is in-and-of-itself interesting and applicable to this research, \cite{hertwig2004} notes one other curious fact for which no explanation is given: in the cited experiments, users are allowed to ``sample'' from a given one-armed bandit as much as they like in a practice round without any specific end, before ``playing for keeps.'' Participants, it seems, chronically undersampled: they quit practising sometimes before even coming accross the a rare outcome with a very large positive or negative reward, the knowledge of which would potentially change their behavior.
 
 This paper attempts to answer that very question: how do people estimate the probability of an unseen rare event? Do they ``snap'' their estimate to zero after not seeing the outcome in some number of chances, effectively assigning measure zero to events they have not seen?
 
-\section{Experiment 1}
 
-\subsection{ Experimental Design }
-
-Participants are presented with an online web application, in which they click ``boxes''. These boxes can be thought of as slot machines. After they are clicked, they ``roll'' for a few moments (~1 second) and then present a result: either a green gem (signifying a ``win''), or a red skull (a ``loss''). If they find a green gem in any of the boxes they play, they are told the game will end and they will recieve a \$5 bonus.
-
-Participants are randomly assigned to two groups. After some trial clicks, and being explained the rules, users are presented with a screen in which there are 3 (15) boxes. They ``play'' each box, and lose 3 (15) times. Next, they are presented with a screen asking them:
-
-\begin{quote}
-If you had the option to play another round (with another 3/15 boxes), what do you think the probability is that you will win a green gem in that round?
-\end{quote}
-
-After answering that question, participants are presented with the option to either take a \$2 participation bonus and quit the game, or forfeit the bonus and play one more round (where they have the chance to win \$5).
-
-\subsection{ Proof of Optimality }
-
-The problem is clearly a discrete 0,1 problem: either you find a green gem, or you do not (either you are rejected or you are accepted). The problem of learning then becomes one of estimating the free ($p$) parameter of a binomial distribution, given you have clicked $n$ boxes. Given your estimate, $\hat{p}$, the probability of winning at least one of the next $n$ attempts is given by:
-\begin{equation} \label {eq:1}
-  P(win) = 1 - (1-\hat{p})^n
-\end{equation}
-%
-We will formulate the process of estimating $\hat{p}$ as one of Bayesian learning, with a Beta prior, paramaterized by $\alpha$ and $\beta$, on the value of $p$. Given $n$ failures, the corresponding posterior Beta distribution is paramaterized by:
-\begin{align*}
-  \alpha'_{n} &= \alpha \\
-  \beta'_{n} &= \beta + n
-\end{align*}
-The PDF of the posterior estimate of $p$ after $n$ failed attempts is therefore given by:
-$$
-P(x | n) = \frac{ x^{\alpha - 1}(1 - x)^{\beta - 1 + n} \Gamma(\alpha + \beta + n)}{\Gamma(\alpha) \Gamma(\beta + n)} \implies x \sim \text{Beta}(\alpha, \beta + n)
-$$
-Which can be plugged back into \ref{eq:1} and take expectations to give us the expected payoff:
-$$
-\mathbb{E}[win] = \int_0^1 1 - \left( 1 - x \right)^n P(x | n) dx
-$$
-Which is increasing in $n$ for any valid values of $\alpha$ and $\beta$. Any reasonable estimate of $p$ compatible with correct Bayesian updating will, therefore, suggest that players estimate a greater probability of winning given another $n$ chances, after $n$ failures, as $n$ increases.
-
-In other words, those presented with 15 failures, and given a chance for another 15 attempts, have a greater chance of winning than those with 3 failues and another 3 attempts.
-
-\subsection{ Results }
-
-The results from this experiment, while small in sample size (N = 30), are decidedly negative. This was a surprise to me personally, as previous versions of this same experiment with other incentives and different wording seemed to be yielding very large treatment effects in the reported estimated probability of winning the next round. Full results can be seen in table \ref{table:descriptive-1}.
-
-While one should not draw definitive conclusions from such a small sample size, there might be something to the presentation of this problem that provides a countereffect to the learning-by-experience bias of estimating rare, unseen events. I will refrain from speculating futher, but believe this requires further research to understand the exact effects at play.
-
-\begin{table}
-  \caption{Summary Statistics for Experiment 1}
-  \label{table:descriptive-1}
-  \begin{center}
-    \begin{tabular}{lcc}
-      \hline
-      & n = 15 & n = 3  \\
-      \hline
-      \hline \\ [-1.8ex]
-      Median reported probability of winning &  50.00 & 47.00  \\
-      \# who played 2nd round                 &   9 &  9  \\
-      N                                  &   15 &  15  \\
-      \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-
-\section{ Experiment 2 }
+\section{ An MTurk Experiment }
 
 \subsection{ Experimental Design }
 
 This experiment was designed specifically for MTurk, taking advantage of several specific features of the platform and those who use it:
 
 \begin{enumerate}
-\item A job creater can specify the characteristics of those who see and can perform their job. This allows us to target, for example, only professional Turkers with a similar level of experience.
-\item Turkers with similar qualifications have access to the same pool of jobs at any given time, and therefore similar opportunity costs.
-\item On a daily basis, Turkers must decide which jobs are worth doing and which are not. So much so, that there are review websites\footnote{\url{https://turkerview.com}} set up, specifically so that Turkers can review job-posters, and in which they report the calculated hourly wage of the job. As such Turkers have, embedded in their very cultural institutions, a very explicit concept of opportunity costs and hourly wages while performing tasks.
+\item Job creators can specify the characteristics of those who see and can perform their job. This allows us to target, for example, only professional Turkers with a similar level of experience.
+\item Turkers with similar qualifications (number of successfully-completed jobs, country, language, etc.) have access to the same pool of jobs at any given time, and therefore similar opportunity costs.
+\item On a daily basis, Turkers must decide which jobs are worth doing and which are not. So much so, that there are review websites\footnote{\url{https://turkerview.com}} set up, specifically so that Turkers can review job posters, and in which they report the calculated hourly wage of the job. As such Turkers have, embedded in their very cultural institutions, a very explicit concept of opportunity costs and hourly wages while performing tasks.
 \end{enumerate}
 
-Participants are shown boxes which, similar to in experiment 1, can be played much like a slot machine and will randomly ``pay out'' with unknown but fixed probability. The boxes are shown to the participants one-at-a-time and the game ends when the participant wins a box or quits, whichever comes first. Participants are told, however, that they were randomly assigned to one of two groups: in the first, the probability of winning is small, in the second, the probability of winning is zero.
+Participants are shown boxes which are played much like slot machines and will randomly ``pay out'' with unknown but fixed probability. The boxes are shown to participants one-at-a-time and the game ends when participants win a box or quit, whichever comes first. Participants are told, however, that they were randomly assigned to one of two groups: in the first, the probability of winning is small, in the second, the probability of winning is zero.
 
 The treatment effect is on the speed of the box roll. Treatment group A can theoretically play a new box about once every 3 seconds. Group B, on the other hand, can only play a new box about once every 12 seconds.
 
-We throw out the participants who got lucky and won, as the question is ``how many losses do you experience before you quit trying?''
+Participants who got lucky and won are excluded from the results. The question is: ``how many losses do you experience before you quit trying?''
 
-\subsection{ Proof of Optimality }
+\subsection{ Rational Response }
 
-In this game, as in applying to jobs, players two unknown variables to estimate, both of which effect the probability of winning:
+In this game, as in applying to jobs, players have two unknown variables to estimate, both of which affect the probability of winning:
 
 \begin{enumerate}
-\item The ``group'' the player belongs to ($a_i, i \in \{L,H\}$).
+\item The group the player belongs to (the ``skill'' the applicant has), $a_i, i \in \{L,H\}$.
 \item The (unkown) probability of payout, $t$, given that they are in the group $a_H$.
 \end{enumerate}
 %
@@ -182,13 +116,13 @@ Rolls are modelled as Bernouli random variables:
 k_{n+1} \thicksim Bernouli( p ) \\
 p \coloneqq P(a_H | n)P(t | n)
 \end{align*}
-Clearly, the two variables are not uniquely identifiable without further assumptions. In general, the difference between updating one's beliefs about one's own characteristics versus updating one's beliefs about the ``tightness'' of the labor market is extremely significant. In the scope of this experiment, however, participants' ``personal'' characteristics are given externally, by the experimenter, and it is not in any ways personal, permanent, or connected to ego. For this reason, in both this proof and in the empirical bias estimates we infer from the results, we model the joint estimation problem as one of estimating $p$ with the posterior mean $\hat{P}_n$ after $n$ failures, regardless of how exactly it is done, which allows us to model behavior in this particular situation without making any additional assumptions.
+Clearly, the two variables are not uniquely identifiable without further assumptions. In general, the difference between updating one's beliefs about one's own characteristics versus updating one's beliefs about the ``tightness'' of the labor market is extremely significant. In the scope of this experiment, however, participants' ``personal'' characteristics are given externally, by the experimenter, and it is not in any way personal, permanent, or connected to ego. For this reason, in both this proof and in the empirical bias estimates that we infer from the results, we model the joint estimation problem as one of estimating $p$ with the posterior mean $\hat{P}_n$ after $n$ failures, regardless of how exactly it is done, which allows us to model behavior in this particular situation without making any additional assumptions.
 
 Clearly, this is an optimal stopping time problem, with the conditions for stopping given when the opportunity cost of playing ``one more roll'' exceeds the expected payoff, given the current estimation of p. Taking advantage of the fact that there is only one positive value $W$ can take, and making the assumption (for mathematical simplification) that agents use the posterior mean as a point estimate rather than integrating over the entire posterior distribution, we can thus charactize the optimal stopping time by:
 $$
 \hat{P}_n u(W) = u(tc)
 $$
-Where $t$ is the time (seconds) it takes to play one more roll, and c is the opportunity cost (dollars / second) of the outside option. Using this, we can comparing the stopping time between two groups, a and b, where $t_a = \frac{1}{x}t_b$. We want to prove that, as a parallel to the previous experiment, ``quicker'' plays should not cause earlier stopping. For this, it is enough to show that:
+Where $t$ is the time (seconds) it takes to play one more roll, and c is the opportunity cost (dollars / second) of the outside option. Using this, we can compare the stopping time between two groups, a and b, where $t_a = \frac{1}{x}t_b$. We want to prove that, as a parallel to the previous experiment, ``quicker'' plays should not cause earlier stopping. For this, it is enough to show that:
 $$
 \hat{P}_{xn}u(W) \geq u \left( \frac{tc}{x} \right)
 $$
@@ -200,7 +134,7 @@ Summary statistics of the results provided in table \ref{table:descriptive-3}.
 
 In light of the previous proof, a natural first statistic to examine is the total time played by each group. Group A could, in theory, play four times as quickly as group B. Given our previous proof, however, group A should play \textit{ at least as } long as group B. Here, we see the opposite: the median time played by group A was about 240 seconds, while for group B it was around 311 seconds.
 
-While indicative, this is not what we actually want to test. What we actually want to test is whether or not there exists a difference in the way in which they calculate $\hat{P}_n$, and the way it differs from the correct Bayesian estimation. If we knew the opportunity cost of time, $c$, and the utility function, we could back out their estimate of the probability:
+While indicative, this is not what we actually want to test. What we actually want to test is whether or there is a difference between how they calculate $\hat{P}_n$, and how that differs from the correct Bayesian estimation. If we knew the opportunity cost of time, $c$, and the utility function, we could back out their estimate of the probability:
 $$
 \hat{P}_n = \frac{u(tc)}{u(W)}
 $$
@@ -210,17 +144,16 @@ Thus, it might be instructional to assume a functional form for the utility func
 A couple of facts jump out:
 
 \begin{enumerate}
-\item The implied opportunity costs are very large: about \$75 per hour for group A and \$50 for group B, assuming the identity utility function (risk nuetrality).
+\item The implied opportunity costs are very high: about \$75 per hour for group A and \$50 for group B, assuming the identity utility function (risk neutrality).
 \item The implied opportunity costs of the two groups seem likely to come from different distributions.
 \end{enumerate}
 
-It thus appears that our participants decrease their probability estimate of winning too quickly. This is in accordance with the literature regarding probability estimation of rare events from experience (\cite{hertwig2004}), in which participants underestimate the probability of rare events. Additionally, we can weakly infer from this evidence that the strength of this bias is positively correlated with the numerocity of the problem: if increase the scale of the problem by speeding it up, you worsen the bias.
-
+It thus appears that our participants decrease their probability estimate of winning too quickly. This is in accordance with the literature regarding probability estimation of rare events from experience (\cite{hertwig2004}), in which participants underestimate the probability of rare events. Additionally, we can weakly infer from this evidence that the strength of this bias is positively correlated with the numerocity of the problem: if you increase the scale of the problem by speeding it up, you worsen the bias.
 
 
 \section{ An Equilibrium Model }
 
-How can biases of probability judgement affect the labor force on an aggregate level? Specifically, if these biases affect the way a job seeker decides where to search, what affects can these have on unemployment and wage distributions across the labor market?
+How can biases of probability judgement affect the labor force on an aggregate level? Specifically, if these biases affect the way a job seeker decides where to search, what effects can they have on unemployment and wage distributions across the labor market?
 
 In order to model such effects, we will need a model with:
 %
@@ -232,15 +165,17 @@ In order to model such effects, we will need a model with:
 %
 A natural fit is to consider directed search models from the field of search and matching labor market models. Refer to \cite{wright2017} for a survey of directed search models.
 
-There are several models from the directed search literature that attempt to model the effects of multiple applications directly (\cite{albrecht2006}, \cite{galenianos2009}, \cite{wolthoff2017}). These papers primarily focus on characterising the game between firms and workers when workes can recieve multiple offers at once and might reject an offer, and firms recieve multiple offers and once and must pick one to which they send the offer. While applicable to the larger contextual question of this paper, the focus is very different. This paper focuses on the process of learning an unknown probability of receiving a job, not the process of deciding where to apply once that probability has been estimated. 
+There are several models from the directed search literature that attempt to model the effects of multiple applications directly (\cite{albrecht2006}, \cite{galenianos2009}, \cite{wolthoff2017}). These papers primarily focus on characterising the game between firms and workers when workers can receive multiple offers at once and might reject an offer, and firms receive multiple offers at once and must pick one to which they send the offer. While applicable to the larger contextual question of this paper, the focus is very different. This paper focuses on the process of learning an unknown probability of receiving a job, not the process of deciding where to apply once that probability has been estimated.
 
-\cite{gonzalez2010} offers a unique directed-search equilibrium model that fulfills all of the above requirements, and is the only model that I know of that does. 
+It is also worth noting that I have not added on-the-job search to the list of requirements. For the purposes of this paper, this serves as a simplifying assumption. It is, however, potentially important to consider the true equilibrium effects of this bias and the way people search for jobs and update their beliefs about their chances in the job market.
+
+\cite{gonzalez2010} offers a unique directed-search equilibrium model that fulfills all of the above requirements, and is the only such model that I am aware of.
 
 \subsection{ Model Specification }
 
-Please refer to \cite{gonzalez2010} for full specification of the model. 
+Please refer to \cite{gonzalez2010} for full specification of the model.
 
-For our purposes, I focus here on the the updating of beliefs. In the baseline model, workers are heterogeneous and endowed with skill $a_i, i \in \{ H, L \}$, and the exogenous distribution over the skills is known to everybody. All workers start with homogenous beliefs about their skill (the expected value given the exogenous distribution). They perform a dynamic programming excersize to determine the submarket with the highest expected value, and apply. Workers are matched to a job with probability $ax$, where $x$ is simply the submarket, continuously valued. After each ``round,'' workers update their beliefs via Bayesian updating, leading to an equilibrium tree of all possible beliefs and submarkets that are ``active.'' From this equilibrium tree, we extract the values of employment and unemployment.
+For our purposes, I focus here on the the updating of beliefs. In the baseline model, workers are heterogeneous and endowed with skill $a_i, i \in \{ H, L \}$, and the exogenous distribution of the skills is known to everybody. All workers start with homogeneous beliefs about their skill (the expected value given the exogenous distribution). They perform a dynamic programming exercise to determine the submarket with the highest expected value, and apply. Workers are matched to a job with probability $ax$, where $x$ is simply the submarket, continuously valued. After each ``round,'' workers update their beliefs via Bayesian updating, leading to an equilibrium tree of all possible beliefs and submarkets that are ``active.'' From this equilibrium tree, we extract the values of employment and unemployment.
 
 It is easily shown that given the above assumptions, the posterior updates are:
 %
@@ -249,24 +184,24 @@ It is easily shown that given the above assumptions, the posterior updates are:
   H(x, \mu) &\equiv a_H - (a_H - \mu)(1 - xa_L)/(1 - x\mu)
 \end{align*}
 %
-Where $\phi$ represents an update after a succesful match, and $H$ represents an update after a rejection. The posterior probability after $n$ rejections, $\hat{P}_n$, is then quite naturally defined within this model as the functional composition of $n$ posterior updates, such that the belief after 2 rejections is given by: 
+Where $\phi$ represents an update after a successful match, and $H$ an update after a rejection. The posterior probability after $n$ rejections, $\hat{P}_n$, is then quite naturally defined within this model as the functional composition of $n$ posterior updates, such that the belief after 2 rejections is given by:
 $$
 \hat{P}_2 \equiv H(g(H(g(\mu_0), \mu_0)), H(g(\mu_0),\mu_o))
 $$
-Thus, the posterior update after $n$ rejections, taking $\mu_0$ as given, takes the following form:  
+Thus, the posterior update after $n$ rejections, taking $\mu_0$ as given, takes the following form:
 %
 $$
 \hat{P}(n): \mathbb{N} \rightarrow \mathbb{R}
 $$
 %
-I extend the model to incorporate a very simple and flexible bias parameter: 
+I extend the model to incorporate a very simple and flexible bias parameter:
 %
 $$
 \hat{P}^{mod}(n) \equiv \hat{P} (n(1 + \epsilon))
 $$
-This bias linearly increases the number of rejections, such that a job seeker will react after 1 rejection as though they had receieved $1 + \epsilon$ rejections.
+This bias linearly increases the number of rejections, such that a job seeker will react after 1 rejection as though they had received $1 + \epsilon$ rejections.
 
-While flexible, this bias parameter does not fit into the functional form of our posterior estimate as defined above, only being defined on the natural numbers and therefore not defined on $N(1 + \epsilon), \epsilon \in \mathbb{R}$. 
+While flexible, this bias parameter does not fit into the functional form of our posterior estimate as defined above, only being defined on the natural numbers and therefore not defined on $N(1 + \epsilon), \epsilon \in \mathbb{R}$.
 
 To solve this problem, I take a first-order approximation of $\hat{P}^{mod}_n$, using finite differences from the surrounding naturals to numerically approximate the first derivative, thus defining $\hat{P}^{mod}_n: \mathbb{R} \rightarrow \mathbb{R}$ in the model space.
 
@@ -274,7 +209,7 @@ To solve this problem, I take a first-order approximation of $\hat{P}^{mod}_n$, 
 
 I use the empirical results from the second experiment to estimate the bias parameter, $\epsilon$, the only parameter I will explicitly calibrate.
 
-A priori, we do not know the opportunity cost of time of each of the workers, but we can use the assumptions that A) they come from the same distribution and B) the distribution is limited in how spread it we believe it is, we can estimate the opportunity cost for each participant as:
+A priori, we do not know the opportunity cost of time of each of the workers, but we can use the assumptions that A) they come from the same distribution and B) the distribution is limited in how spread we believe it is, we can estimate the opportunity cost for each participant as:
 $$
 c_i \sim \text{Normal}(\mu_c, \sigma_c)
 $$
@@ -288,7 +223,7 @@ We model the CRRA risk-aversion parameter, $\rho$, as:
 \begin{align*}
   \rho \sim \text{Gamma}(3, 1)
 \end{align*}
-A weak prior with a mode of about 2. It is indicative that this parameter stays exactly at its mode, showing that our specification is robust to any reasonable parameter of risk-aversion. 
+A weak prior with a mode of about 2. It is indicative that this parameter stays exactly at its mode, showing that our specification is robust to any reasonable parameter of risk-aversion.
 
 Finally:
 \begin{align*}
@@ -306,12 +241,12 @@ $$
 The theoretical model, while close, does not align exactly with the empirical model I have chosen. This is driven by several simple, and common, assumptions in the theoretical model:
 %
 \begin{enumerate}
-\item All applicants know the probability of a succesful job application conditional on their skill level.
+\item All applicants know the probability of a successful job application conditional on their skill level.
 \item Skill level is a binary discrete variable (``low'' or ``high''), and as such the estimated posterior mean of this variable is a non-linear function of the numbers of rejections (or successes).
 \item The probability of getting a job in any given submarket is linear in skill (the probability is given, simply, by $xa$, where $x$ is the submarket and $a$ is the skill level).
 \end{enumerate}
 
-The nature of the last two assumptions is that job seekers update their beliefs quickly after the first couple of rejections, and given the discretization of the submarket space into a reasonably small number of submarkets, they quickly end up searching the lowest possible submarket after a few rejections. Because of this quirk of the model, we cannot appropriately add in the exact biases that we have estimated: any bias over 1 will cause the same behavior. Thus, we calibrate the model by normalizing the lower bias to 0. In other words:
+The nature of the last two assumptions is that job seekers update their beliefs quickly after the first couple of rejections, and given the discretization of the submarket space into a reasonably small number of submarkets, they quickly end up searching the lowest possible submarket after a few rejections. Because of this quirk of the model, we cannot appropriately add the exact biases that we have estimated: any bias over 1 will cause the same behavior. Thus, we calibrate the model by normalizing the lower bias to 0. In other words:
 
 \begin{equation} \label {eq:epsilon-model}
 \epsilon^{mod}_{g} = \frac{\epsilon_g - \min(\epsilon_g, \epsilon_{g'})}{\min (\epsilon_g, \epsilon_{g'})}
@@ -323,17 +258,27 @@ Where $\epsilon_{g}$ is the empiricallly estimated bias for treatment group $g$,
 
 Figure \ref{fig:posterior-mean-bias} shows the posterior distribution, calculated via Hamiltonian MCMC, of the two location parameters, $\mu_{\epsilon, g}$, which relate to the estimated mean bias within each treatment group.
 
-It is worth noting that, sampling from this posterior, one can only reject the null hypothesis that the mean bias of group B is greater than or equal to group A at an 11\% level. This confidence level is in line with the inferences made directly from the simplistic opportunity costs calculated previously.
+It is worth noting that, sampling from this posterior, one can only reject the null hypothesis that the mean bias of group B is greater than or equal to group A at an 11\% level. This confidence level is in line with the inferences made directly from the simplistic opportunity costs calculated previously in regards to the experimental results themselves.
 
 Full model parameters are provided in table \ref{table:model-params}, although these parameters should be considered extremely preliminary, as they were not calibrated specifically for this model. The results of posterior-updating bias on the wage-distribution outcomes, however, seem very robust to the rest of the model's calibration.
 
-Figure \ref{fig:wage-distributions} shows the simulated wage distributions generated by the calibrated equlibrium model with bias parameter calculated as per (\ref{eq:epsilon-model}) using the median posterior values of $\epsilon_g$ as point estimates. While this is a stylized model, the results are nonetheless telling: greater bias leads to an erosian of the middle class. This is driven by high-skill workers who get unlucky in their first job application round: without the bias, they stay accurately hopeful about their own skill, and thus find a middle-wage job. With the bias, however, they become more pessimistic after a bit of bad luck, and immediately apply for (and get stuck in) lower-wage jobs.
+Equilibrium consists of a ``tree'' of beliefs generated from ex-ante heterogeneous agents with homogeneous prior beliefs about their own skill, along with the relative amounts of employed and unemployed agents at each ``belief node.'' The tree is binary, and each node has two children: one for the belief that would result from a rejection (given the current belief), and one that would result from a successful application. The beliefs, in turn, imply a submarket and thus a wage for all the employed agents. Only a portion of all the potential submarkets are active at any given time, leading to a very discrete and spiky wage distribution when plotted on a continuous scale, as the wages from the ``non-active'' submarkets are not received by anyone.
+
+Figure \ref{fig:wage-distributions} shows the simulated wage distributions generated by the calibrated equlibrium model with bias parameter calculated as per (\ref{eq:epsilon-model}) using the median posterior values of $\epsilon_g$ as point estimates. I have added a small amount of noise to plot the wage distributions, purely for visualization purposes, but you can still clearly see the modes that correspond to the active submarket wages.
+
+In the zero-bias model one can clearly see three modes that correspond to workers who were rejected zero, one, and two times respectively, before getting their first job. In the biased model, this middle mode disappears as workers are more pessimistic after their first rejection, and thus apply to lower-wage jobs.
+
+While this is a stylized model, the results are nonetheless telling: greater bias leads to an erosion of the middle class. Both high- and low-skill workers who get unlucky in their initial applications end up in lower-wage jobs then they would with a less biased estimate of their chances in the market.
 
 \section{ Conclusions and Future Research }
 
-Understanding how individuals direct their job search is crucial if we want to model the labor market and the impact of poilicies on its efficiency. I have argued that job search is, at its core, a process in which individuals must necessarily make judgements about the probabilities of favorable outcomes to different actions.
+I have shown experimental evidence that participants in a probabilistic game estimate the probability of winning, or relate to their opportunity costs, differently based on the speed of game play. This result is not consistent with expected utility and rationality, but it is consistent with several well-studied biases in probability estimation and learning by experience. These biases can cause job seekers to react suboptimally to technologies that allow them to apply to jobs more quickly, causing them to underestimate their chances in the job market.
 
-Learning by experience is one way in which invidividuals estimate these probabilities and this paper has focused on enumerating and testing some statistical biases related to learning by experience. In the experiments, and in the cited literature, I have only considered these biases in "impersonal" contexts. If one judges the probability of winning a "game" to be low, this has nothing to do with their own value or self-worth as an individual. If one judges the probability of getting a job to be low, this a lot to do with their own value and self-worth as individuals!
+The effects of this underestimating in the real world are not known, but given the assumptions of the directed-search model of \cite{gonzalez2010}, it leads to a hollowing out of middle-class jobs as workers get easily discouraged in their search.
+
+Understanding how individuals direct their job search is crucial if we want to model the labor market and the impact of policies on its efficiency. I have argued that job search is, at its core, a process in which individuals must necessarily make judgements about the probabilities of favorable outcomes to different actions.
+
+Learning by experience is one way in which individuals estimate these probabilities and this paper has focused on enumerating and testing some statistical biases related to learning by experience. In the experiments, and in the cited literature, I have only considered these biases in ``impersonal'' contexts. If one judges the probability of winning a ``game'' to be low, this has nothing to do with their own value or self-worth as an individual. If one judges the probability of getting a job to be low, this a lot to do with their own value and self-worth as individuals!
 
 A simple extension and logical next step would therefore be to understand how learning-by-experience biases change when one is estimating something that might reflect positively or negatively on one's own self image. In the words of Anthony Greenwald (1980):
 
@@ -341,13 +286,11 @@ A simple extension and logical next step would therefore be to understand how le
 One of the best established findings in social psychology is that people perceive themselves readily as the origin of good effects and reluctantly as the origin of ill effects...
 \end{displayquote}
 
-It must also be considered that learning by experience is not the only, and may not even be the primary, way in which individuals estimate the probability of getting a job. Clearly, people do not apply to every single job they would enjoy doing: they know aprior that they are "not qualified" to do certain jobs, akin to estimating the probability of success to essentially zero in those contexts. This estimation involves preconceptions about the world that arguably might affect the way in which people direct their search much more than learning by experience, but also might very much affect the way in which people learn by experience. (cite) something about failures of bayesian updating in very generic way -- it's not only the prior that changes, but potentially also the updating itself.
+It must also be considered that learning by experience is not the only, and may not even be the primary, way in which individuals estimate the probability of getting a job. Clearly, people do not apply to every single job they would enjoy doing: they know a prior that they are ``not qualified'' to do certain jobs, akin to estimating the probability of success to essentially zero in those contexts. This estimation involves preconceptions about the world that not only might affect the way in which people direct their search much more than learning by experience, but also might affect the way in which people learn by experience.
 
-This opens the question: how does public and private discourse effect the way in which people search for jobs? It is not hard to imagine that repeated exposure to negative discussions about the state of the economy and a high unemployment rate might come quickly to one's mind after a few rejections, even if it one felt quite confident beforehand.
+This opens the question: how does public and private discourse affect the way in which people search for jobs? It is not hard to imagine that repeated exposure to negative discussions about the state of the economy and a high unemployment rate might come quickly to one's mind after a few rejections, even if it one felt quite confident beforehand.
 
-Aditionally, I believe it is important to note that all of these affects might not only effect the directed search itself, but also the entire perception of bargaining power held by a majority of workers. If one underestimates the probability of getting a job, is one less likely to bargain for a higher wage, form a union, or petition for a raise after having worked for a while? In short, is it possible that a major change in the percieved bargaining power of workers can be caused by something as simple as a theoretically benevolent technological change that has the unfortunate side effect of increasing the absolute number of rejections for the majority of job seekers.
-
-
+Additionally, I believe it is important to note that all of these affects might not only impact the directed search itself, but also the entire perception of bargaining power held by the majority of workers. If one underestimates the probability of getting a job, is one less likely to bargain for a higher wage, form a union, or petition for a raise after the first year? In short, is it possible that a major change in the perceived bargaining power of workers can be caused by something as simple as a theoretically benevolent technological change that has the unfortunate side effect of increasing the absolute number of rejections for the majority of job seekers.
 
 
 \printbibliography
@@ -408,14 +351,14 @@ Aditionally, I believe it is important to note that all of these affects might n
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.95\textwidth]{../experiments/mean-bias}
+    \includegraphics[width=0.8\textwidth]{../experiments/mean-bias}
     \caption{Posterior distribution for mean bias parameter}
     \label{fig:posterior-mean-bias}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.95\textwidth]{../equilibrium/wage-distributions}
+    \includegraphics[width=0.8\textwidth]{../equilibrium/wage-distributions}
     \caption{Equilibrium wage distributions with estimated bias differential}
     \label{fig:wage-distributions}
 \end{figure}
@@ -477,7 +420,7 @@ Again, assuming without loss of generality that $t = 1$ we solve for the opportu
   c &= \left( \hat{P}_n W^{1 - \rho} \right)^{\frac{1}{1 - \rho}} \\
   c &= \hat{P}_n^{\frac{1}{1 - \rho}} W
 \end{align*}
-%
+
 Developing \ref{proof:ineq} with the revelead cost and imposing $\rho > 1$, we solve for the risk-averse case, the opposite being symmetric:
 \begin{align*}
   \hat{P}_{xn}  W^{1 - \rho} &\leq \frac{c}{x}^{1 - \rho} \\
@@ -491,7 +434,19 @@ As in the log case, we impose relatively large $n$ to approximate the posterior:
 \end{align*}
 Which is clearly satisfied for all $\rho > 1$. Again, numerical proof is provided without the simplifying assumptions in the online suppliments.
 
+% \subsection{ Any Concave Utility Function }
 
+% \begin{align*}
+%   \frac{1}{xn}u(W) \geq u \left( \frac{1}{x} u^{-1}\left( \frac{1}{n} u \left( W \right) \right) \right)
+% \end{align*}
+% The inverse of an increasing concave function is an increasing convex function. Restricting the analysis to the domain of the positive reals, therefore:
+% \begin{align*}
+%   \frac{1}{n} u^{-1}(u(W))  \geq  u^{-1}(\frac{1}{n}u(W))
+% \end{align*}
+% However,
+% \begin{align*}
+%   \frac{1}{xn}u(W) \leq u( \frac{1}{xn} W)
+% \end{align*}
 
 \end{appendices}
 \end{document}
