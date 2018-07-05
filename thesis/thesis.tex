@@ -91,7 +91,7 @@ This paper attempts to answer that very question: how do people estimate the pro
 This experiment was designed specifically for MTurk, taking advantage of several specific features of the platform and those who use it:
 
 \begin{enumerate}
-\item Job creators can specify the characteristics of those who see and can perform their job. This allows us to target, for example, only professional Turkers with a similar level of experience.
+\item Task creators can specify the characteristics of those who see and can perform their task. This allows us to target, for example, only professional Turkers with a similar level of experience.
 \item Turkers with similar qualifications (number of successfully-completed jobs, country, language, etc.) have access to the same pool of jobs at any given time, and therefore similar opportunity costs.
 \item On a daily basis, Turkers must decide which jobs are worth doing and which are not. So much so, that there are review websites\footnote{\url{https://turkerview.com}} set up, specifically so that Turkers can review job posters, and in which they report the calculated hourly wage of the job. As such Turkers have, embedded in their very cultural institutions, a very explicit concept of opportunity costs and hourly wages while performing tasks.
 \end{enumerate}
@@ -116,30 +116,60 @@ Rolls are modelled as Bernouli random variables:
 k_{n+1} \thicksim Bernouli( p ) \\
 p \coloneqq P(a_H | n)P(t | n)
 \end{align*}
-Clearly, the two variables are not uniquely identifiable without further assumptions. In general, the difference between updating one's beliefs about one's own characteristics versus updating one's beliefs about the ``tightness'' of the labor market is extremely significant. In the scope of this experiment, however, participants' ``personal'' characteristics are given externally, by the experimenter, and it is not in any way personal, permanent, or connected to ego. For this reason, in both this proof and in the empirical bias estimates that we infer from the results, we model the joint estimation problem as one of estimating $p$ with the posterior mean $\hat{P}_n$ after $n$ failures, regardless of how exactly it is done, which allows us to model behavior in this particular situation without making any additional assumptions.
+Clearly, the two variables are not uniquely identifiable without further assumptions. In general, the difference between updating one's beliefs about one's own characteristics versus updating one's beliefs about the ``tightness'' of the labor market is extremely significant. In the scope of this experiment, however, participants' ``personal'' characteristics are given externally, by the experimenter, and it is not in any way personal, permanent, or connected to ego. For this reason, in both this proof and in the empirical bias estimates that we infer from the results, we model the joint estimation problem as one of estimating $p$ with the posterior mean $p^{\pi}_n$ after $n$ failures, regardless of how exactly it is done, which allows us to model behavior in this particular situation without making any additional assumptions.
 
-Clearly, this is an optimal stopping time problem, with the conditions for stopping given when the opportunity cost of playing ``one more roll'' exceeds the expected payoff, given the current estimation of p. Taking advantage of the fact that there is only one positive value $W$ can take, and making the assumption (for mathematical simplification) that agents use the posterior mean as a point estimate rather than integrating over the entire posterior distribution, we can thus charactize the optimal stopping time by:
+We model the problem as an optimal stopping time problem, where the value of playing after $n$ rounds is given by:
+%
 $$
-\hat{P}_n u(W) = u(tc)
+V(n) = \max \left\{ \mathbb{E} V_p(n), V_q \right\}
 $$
-Where $t$ is the time (seconds) it takes to play one more roll, and c is the opportunity cost (dollars / second) of the outside option. Using this, we can compare the stopping time between two groups, a and b, where $t_a = \frac{1}{x}t_b$. We want to prove that, as a parallel to the previous experiment, ``quicker'' plays should not cause earlier stopping. For this, it is enough to show that:
+%
+With the value of quitting given by the discounted flow of regular payments provided by the participants outside option:
+%
 $$
-\hat{P}_{xn}u(W) \geq u \left( \frac{tc}{x} \right)
+V_q = \frac{u(c)}{1 - \beta}
 $$
-A proof is provided in Appendix \ref{appendix:proof}, where it is shown that this holds for any level of risk-aversion in a CRRA utility function. This proves that, rationally, quicker rolls does not lead to quicker quitting in optimal play.
+%
+Where $\beta$ represents the discount factor. The value of playing, $V_p$ given by the Bellman equation:
+%
+$$
+\mathbb{E}V_p(n) = p^{\pi}_n \left[ u(W) + V_q \right] +  (1 - p^{\pi}_n) \beta V_p(n+1)
+$$
+%
+Where $p^{\pi}_n$ represents the Bayesian posterior mean after $n$ failures. By recursive substitution we can represent this as:
+%
+$$
+\mathbb{E}V_p(n) = \left[u(W) + V_q \right] \hat{P}_n
+$$
+%
+Where $\hat{P}_n$ is defined as:
+$$
+\hat{P}_n \equiv p^{\pi}_{n} + \sum_{j = n + 1}^{\infty} \beta^{j - n} p^{\pi}_{j} \prod_{k = n + 1}^{j} \left( 1 - p^{\pi}_{k - 1} \right)
+$$
+%
+The optimal stopping time, $n$, is then given by:
+%
+\begin{align*}
+V_q  &= \left[u(W) + V_q \right] \hat{P}_n
+\end{align*}
+
 
 \subsection{ Results }
 
 Summary statistics of the results provided in table \ref{table:descriptive-3}.
 
-In light of the previous proof, a natural first statistic to examine is the total time played by each group. Group A could, in theory, play four times as quickly as group B. Given our previous proof, however, group A should play \textit{ at least as } long as group B. Here, we see the opposite: the median time played by group A was about 240 seconds, while for group B it was around 311 seconds.
-
-While indicative, this is not what we actually want to test. What we actually want to test is whether or there is a difference between how they calculate $\hat{P}_n$, and how that differs from the correct Bayesian estimation. If we knew the opportunity cost of time, $c$, and the utility function, we could back out their estimate of the probability:
+What we actually want to test is whether or there is a difference between how they calculate $\hat{P}_n$, and how that differs from the correct Bayesian estimation. If we knew the opportunity cost of time, $c$, and the utility function and discount rate, we could back out their estimate of the probability:
 $$
-\hat{P}_n = \frac{u(tc)}{u(W)}
+\hat{P}_n = \frac{u(c)}{(1 - \beta)u(W) + u(c)}
 $$
-
-Thus, it might be instructional to assume a functional form for the utility function, estimate the opportunity cost of time, which should be equally distributed for both groups, and examine that cost. These estimates are provided in table \ref{table:descriptive-3}, where one can see the results of a Mann Whitney U test between the distribution of costs for both groups.
+%
+Thus, it might be instructional to assume a functional form for the utility function, assume perfect Bayesian probability updating, and then estimate the opportunity cost of time, which should be equally distributed for both groups:
+%
+$$
+c = u^{-1} \left( \left(1 - \beta \right) u(W) \frac{\hat{P}_n}{1 - \hat{P}_n} \right)
+$$
+%
+These estimates are provided in table \ref{table:descriptive-3}, where one can see the results of a Mann Whitney U test between the distribution of costs for both groups.
 
 A couple of facts jump out:
 
@@ -211,13 +241,13 @@ I use the empirical results from the second experiment to estimate the bias para
 
 A priori, we do not know the opportunity cost of time of each of the workers, but we can use the assumptions that A) they come from the same distribution and B) the distribution is limited in how spread we believe it is, we can estimate the opportunity cost for each participant as:
 $$
-c_i \sim \text{Normal}(\mu_c, \sigma_c)
+c_i \sim \text{Normal}(\mu^c, \sigma^c)
 $$
-Where $\mu_c$ and $\sigma_c$ are population parameters learned hierarchically with a weakly informative (half-Cauchy) prior on the mean and fairly strong inverse-gamma prior on the variance that shrinks it towards zero, thus grouping our cost estimates together as per our assumption. We then estimate a bias parameter for each individual::
+Where $\mu^c$ and $\sigma^c$ are population parameters learned hierarchically with a weakly informative (half-Cauchy) prior on the mean and fairly strong inverse-gamma prior on the variance that shrinks it towards zero, thus grouping our cost estimates together as per our assumption. We then estimate a bias parameter for each individual::
 \begin{align*}
-  \epsilon_i \sim \text{Normal}(\mu_{\epsilon}, \sigma_{\epsilon})
+  \epsilon_i \sim \text{Normal}(\mu^{\epsilon}_g, \sigma^{\epsilon}_g)
 \end{align*}
-Where ``group'' parameters $\mu_{\epsilon, g}$ and $\sigma_{\epsilon, g}$ are learned hierarchically for each treatment group, $g$. I use an uninformative half-Cauchy prior on the median and weaker inverse-gamma prior on the variance. Exact specifications of all the model are available in the online supplementary materials and code.
+Where ``group'' parameters $\mu^{\epsilon}_g$ and $\sigma^{\epsilon}_g$ are learned hierarchically for each treatment group, $g$. I use an uninformative half-Cauchy prior on the median and weaker inverse-gamma prior on the variance. Exact specifications of all the model are available in the online supplementary materials and code.
 
 We model the CRRA risk-aversion parameter, $\rho$, as:
 \begin{align*}
@@ -227,15 +257,15 @@ A weak prior with a mode of about 2. It is indicative that this parameter stays 
 
 Finally:
 \begin{align*}
-  p_{i,g} = \frac{1}{1 + N_i(1 + \epsilon_g)}
+  p_{i} = \frac{1}{1 + N_i(1 + \epsilon_g)}
 \end{align*}
 Where $p_{i,g}$ indicates the posterior mean estimated probability of winning of individual $i$ from group $g$ after $N_i$ rolls. We then ensure the condition:
 $$
-\frac{p_{i,g}}{c_i} = \frac{t_i}{W}
+p_{i,g} u\left( W \right) = u\left( c_it_i \right)
 $$
 Where $t_i$ is the mean time between each roll measured for participant $i$. For tractability, I transform this into a squared exponentiated loss function with a large penalization term, $\delta$:
 $$
-\exp \left\{ \delta \left(\frac{\hat{P}_n}{c} - \frac{t}{W} \right)^2 \right\}
+\exp \left\{ \delta \left[ p_{i,g} u\left( W \right) - u\left( c_it_i \right) \right]^2 \right\}
 $$
 
 The theoretical model, while close, does not align exactly with the empirical model I have chosen. This is driven by several simple, and common, assumptions in the theoretical model:
@@ -307,17 +337,17 @@ Additionally, I believe it is important to note that all of these affects might 
   \caption{Summary Statistics for Experiment 2}
   \label{table:descriptive-3}
   \begin{center}
-    \begin{tabular}{lccccccc}
+    \begin{tabular}{lcccccccc}
       \hline
-      & Group & t &  Rolls  &  Time played & c ($\rho = 2$) & c (identity) & N \\
+      & Group & N & t &  Rolls  &  Time played & c ($\rho = 2$) & c ($\rho = 1$) & c ($\rho = 0$)\\
       \hline
       \hline \\ [-1.8ex]
-      Median &         a &       4.00 & 54.00 & 239.91 &              0.25 &                      0.02 & 29  \\
-      &         b &      15.00 & 18.00 & 311.39 &              0.07 &                      0.01 & 28  \\
-      Mean   &         a &       4.52 & 76.72 & 374.41 &              0.27 &                      0.04 & 29  \\
-      &         b &      16.89 & 23.71 & 400.08 &              0.07 &                      0.02 & 28 \\
+      Median &         a & 29 &          4 &    54 &  240 &                 0.0043 &                 0.0277 &                    2.1368  \\
+      &         b & 28 &         15 &    18 &  311 &                0.0030 &                 0.0207 &                    1.4448  \\
+      Mean &         a & 29 &          5 &    77 &  374 &              0.0077 &                 0.0541 &                    3.6450  \\
+       &         b & 28 &         17 &    24 &  400 &              0.0046 &                 0.0366 &                    2.0875  \\
       \hline \\ [-1.8ex]
-      MW p-val & & & & 0.285 & 0.000 & 0.080 \\
+      MW p-val & & & & & & 0.114 & 0.192 & 0.078 \\
       \hline \\ [-1.8ex]
       \multicolumn{6}{l}{\textit{Where $t$ is roll time and $c$ is opportunity cost in cents per second}} \\
     \end{tabular}
@@ -364,89 +394,6 @@ Additionally, I believe it is important to note that all of these affects might 
 \end{figure}
 
 \newpage
-
-\section{Proof of Non-Time Decreasing Optimality for Experiment 2}
-\label{appendix:proof}
-
-Given CRRA utility function:
-\begin{align*}
-u(c) =
-  \begin{cases}
-    log(c) \ \text{for} \rho = 1 \\
-    \frac{c^{1 - \rho} - 1}{1 - \rho} \ \text{otherwise}
-  \end{cases}
-\end{align*}
-%
-We will prove separately, for both cases, that given:
-\begin{align*}
-  \hat{P}_{n}u(W) = u(tc)
-\end{align*}
-It follows:
-\begin{equation} \label{proof:ineq}
-  \hat{P}_{xn}u(W) \geq u(\frac{tc}{x})
-\end{equation}
-%
-\paragraph{Log case}
-
-Without loss of generality we assume the time per play is equal to one ($t = 1$) and solve for the revealed opportunity cost of time, $c$:
-%
-\begin{align*}
-  \hat{P}_{n} \log(W) &= \log(c) \\
-  c &= W^{\hat{P}_n}
-\end{align*}
-%
-Which we plug into \ref{proof:ineq}
-\begin{align*}
-  \hat{P}_{xn} \log(W) &\geq \hat{p}_n \log(W) - \log(x)
-\end{align*}
-We use the fact that with reasonably large $n$, such that the data is large relative to the strength of the prior, the posterior mean is estimated by:
-\begin{align*}
-  \hat{P}_n \approx \frac{1}{n}
-\end{align*}
-Which we use to further develop our previous equation:
-\begin{align*}
-  \frac{1}{xn} \log(W) &\geq \frac{1}{n} \log(W) - \log(x) \\
- \log \left( W^{\frac{1}{xn}} \right) &\geq \log \left( \frac{W^{\frac{1}{n}}}{x} \right) \\
-  x W^{\frac{1}{xn}} &\geq W^{\frac{1}{n}}
-\end{align*}
-Which holds, again, for any reasonably large $n$ such that $W^{\frac{1}{n}} \rightarrow 1$ and $x > 1$. Numerical proofs are provided in the online suppliments showing that these assumptions of large $n$ are a mathematical convenience and that the result holds for all feasible values of $n \geq 1$ and $x > 1$.
-
-\paragraph{General case}
-
-Again, assuming without loss of generality that $t = 1$ we solve for the opportunity cost of time. Note, I drop the minus one in the numerator, as is customary for convenience, which has implications discussed further down:
-\begin{align*}
-  \hat{P}_n u(W) &= u(c) \\
-  \hat{P}_n  \frac{W^{1 - \rho}}{1 - \rho} &= \frac{c^{1 - \rho}}{1 - \rho} \\
-  c &= \left( \hat{P}_n W^{1 - \rho} \right)^{\frac{1}{1 - \rho}} \\
-  c &= \hat{P}_n^{\frac{1}{1 - \rho}} W
-\end{align*}
-
-Developing \ref{proof:ineq} with the revelead cost and imposing $\rho > 1$, we solve for the risk-averse case, the opposite being symmetric:
-\begin{align*}
-  \hat{P}_{xn}  W^{1 - \rho} &\leq \frac{c}{x}^{1 - \rho} \\
-  x \hat{P}_{xn}^{\frac{1}{1 - \rho}}  W &\geq c \\
-  x \hat{P}_{xn}^{\frac{1}{1 - \rho}}  &\geq \hat{P}_n^{\frac{1}{1 - \rho}}
-\end{align*}
-As in the log case, we impose relatively large $n$ to approximate the posterior:
-\begin{align*}
-  x \left( \frac{1}{xn} \right)^{\frac{1}{1 - \rho}}  &\geq \left( \frac{1}{n} \right)^{\frac{1}{1 - \rho}} \\
-  x^{\frac{ - \rho}{1 - \rho}}  &\geq 1
-\end{align*}
-Which is clearly satisfied for all $\rho > 1$. Again, numerical proof is provided without the simplifying assumptions in the online suppliments.
-
-% \subsection{ Any Concave Utility Function }
-
-% \begin{align*}
-%   \frac{1}{xn}u(W) \geq u \left( \frac{1}{x} u^{-1}\left( \frac{1}{n} u \left( W \right) \right) \right)
-% \end{align*}
-% The inverse of an increasing concave function is an increasing convex function. Restricting the analysis to the domain of the positive reals, therefore:
-% \begin{align*}
-%   \frac{1}{n} u^{-1}(u(W))  \geq  u^{-1}(\frac{1}{n}u(W))
-% \end{align*}
-% However,
-% \begin{align*}
-%   \frac{1}{xn}u(W) \leq u( \frac{1}{xn} W)
-% \end{align*}
 
 \end{appendices}
 \end{document}

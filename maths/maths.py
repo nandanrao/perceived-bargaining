@@ -16,6 +16,43 @@ ps = [s[1] if len(s) > 1 else s[0] for s in sols]
 [p*n for p,n in zip(ps, ns)]
 
 
+beta,n,j,k = symbols('beta n j k')
+
+eq = beta**(j-n)/(2 + j) * Product(1 - 1/{1+k}, (k, n+1, j))
+s = Sum(eq, (j, n+1, oo))
+p = 1/(1 + n) + s
+
+
+def u(rho):
+    if rho == 1:
+        return lambda c: np.log(c + 1)
+    else:
+        return lambda c: ((c + 1)**(1 - rho) - 1)/(1 - rho)
+
+def vq(out, beta):
+    return out/(1 - beta)
+
+def p(n = 1, beta = .98, eps = 1e-6, max_iter = 10000):
+    p = 0
+    prev = 1
+    for i in range(max_iter):
+        add = beta*prev*post(n)
+        if add < eps:
+            break
+        p += add
+        n += 1
+        prev = (1 - post(n))*prev
+    return p
+
+
+def stopping(out, n = 20, beta = .999, rho = 2, W = 4.1):
+    o = out/(1 - beta)
+    return np.abs(u(rho)(W + o)*p(n) - u(rho)(o))
+
+from scipy.optimize import minimize
+
+minimize(stopping, [5.])
+
 
 ################################
 # S/F GAME ANALYSIS
@@ -56,11 +93,18 @@ assert(len(a[a<0]) == 0)
 
 ## CRRA UTILITY
 rho = Symbol('rho')
+c = Symbol('c')
 u = lambda c: (c**(1 - rho) - 1)/(1 - rho)
-post = lambda n: 1 / (1 + 1 + n)
-c = (post(n) * u(W) * (1 - rho) + 1)**(1/(1 - rho))
+# post = lambda n: 1 / (1 + 1 + n)
+post = lambda n: 1/n
 
-e = (post(n*x) * u(W) - u(c/x)).subs(W, 500)
+cost_fn = solve(post(n)*u(W) + (1 - post(n))*u(0) - u(c), c)[0]
+
+e = post(x*n) * u(W) > u(cost_fn/x)
+
+# c = (post(n) * u(W) * (1 - rho) + 1)**(1/(1 - rho))
+
+e = post(n*x) * u(W) - u(c/x)
 
 a = np.ones((20, 20, 20))
 for i,n_inner in enumerate(np.arange(1, 200, 10)):
