@@ -27,23 +27,22 @@ m <- vb(model.linear, data)
 s <- sampling(model.linear, data)
 
 
-
-
 model.grouped <- stan_model("distortion-grouped.stan")
 
 d <- d %>% mutate(prize = 500)
 
 data <- list(
-    penalty = 1000,
-    sd_cost_shape = 10,
-    sd_cost_scale = 1,
+    penalty = 100,
+    mean_cost = 4.,
+    sd_cost = 3.,
     sd_epsilon_shape = 2,
     sd_epsilon_scale = 2,
-    rho_shape = 3,
-    rho_scale = 1,
+    lower_rho = 1,
+    upper_rho = 4,
+    sd_rho_shape = 6,
+    sd_rho_scale = 1,
+    mean_rho_nu = 1,
     mean_epsilon_nu = 5,
-    mean_cost_nu = 5,
-    mean_cost_center = 0,
     fraction = 10,
     M = nrow(d),
     N = d$rolls,
@@ -52,14 +51,18 @@ data <- list(
     prize = d$prize
 )
 
-vb(model.grouped, data)
+vb(model.grouped, data, elbo_samples = 1000)
 
-s <- sampling(model.grouped, data)
+
+s <- sampling(model.grouped, data, iter = 2000, control = list(adapt_delta = .8, max_treedepth = 10))
+
+s <- sampling(model.grouped, data, iter = 4000, control = list(adapt_delta = .85, max_treedepth = 20))
 
 o <- optimizing(model.grouped, data)
 
 library(tidyr)
 eps.sampled <- data.frame(rstan::extract(s, pars = c('mean_epsilon')))
+
 gather(eps.sampled) %>% ggplot(aes(x = value, color = key)) + geom_density()
 
 

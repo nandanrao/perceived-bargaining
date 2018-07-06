@@ -108,77 +108,79 @@ In this game, as in applying to jobs, players have two unknown variables to esti
 
 \begin{enumerate}
 \item The group the player belongs to (the ``skill'' the applicant has), $a_i, i \in \{L,H\}$.
-\item The (unkown) probability of payout, $t$, given that they are in the group $a_H$.
+\item The (unkown) probability of payout, $\gamma$, given that they are in the group $a_H$.
 \end{enumerate}
 %
 Rolls are modelled as Bernouli random variables:
 \begin{align*}
 k_{n+1} \thicksim Bernouli( p ) \\
-p \coloneqq P(a_H | n)P(t | n)
+p \coloneqq P(a_H | n)P(\gamma | n)
 \end{align*}
-Clearly, the two variables are not uniquely identifiable without further assumptions. In general, the difference between updating one's beliefs about one's own characteristics versus updating one's beliefs about the ``tightness'' of the labor market is extremely significant. In the scope of this experiment, however, participants' ``personal'' characteristics are given externally, by the experimenter, and it is not in any way personal, permanent, or connected to ego. For this reason, in both this proof and in the empirical bias estimates that we infer from the results, we model the joint estimation problem as one of estimating $p$ with the posterior mean $p^{\pi}_n$ after $n$ failures, regardless of how exactly it is done, which allows us to model behavior in this particular situation without making any additional assumptions.
+Clearly, the two variables are not uniquely identifiable without further assumptions. In general, the difference between updating one's beliefs about one's own characteristics versus updating one's beliefs about the ``tightness'' of the labor market is extremely significant. In the scope of this experiment, however, participants' ``personal'' characteristics are given externally, by the experimenter, and it is not in any way personal, permanent, or connected to ego. For this reason, in both this proof and in the empirical bias estimates that we infer from the results, we model the joint estimation problem as one of estimating $p$ with the posterior mean $\hat{P}_n$ after $n$ failures, regardless of how exactly it is done, which allows us to model behavior in this particular situation without making any additional assumptions.
 
-We model the problem as an optimal stopping time problem, where the value of playing after $n$ rounds is given by:
+I model the problem as an optimal stopping time problem with a finite horizon in which there is no discounting. Consider, for example, the horizon to be the ``work day'' of the Turker. Quite naturally, the worker cannot consume the wage until after the period is finished, so the utility is considered to be the utility of consumption of the period as-a-whole. In this framework, there is also no discounting. The value after playing $n$ rounds is then given by the maximum being the value of continuing to play and the value of quitting.
 %
 $$
-V(n) = \max \left\{ \mathbb{E} V_p(n), V_q \right\}
+V(n) = \max \left\{ \mathbb{E}V_p(n), V_q(n)  \right\}
 $$
 %
-With the value of quitting given by the discounted flow of regular payments provided by the participants outside option:
+Where the value of quitting it given by:
 %
 $$
-V_q = \frac{u(c)}{1 - \beta}
+V_q(n) = u\left( \sum_n^T ct \right)
 $$
 %
-Where $\beta$ represents the discount factor. The value of playing, $V_p$ given by the Bellman equation:
+With $c$ is the per-second wage of the outside option and $t$ is the number of seconds per round of play. The expected value of playing is then given in recursive form as:
 %
 $$
-\mathbb{E}V_p(n) = p^{\pi}_n \left[ u(W) + V_q \right] +  (1 - p^{\pi}_n) \beta V_p(n+1)
+\mathbb{E}V_p(n) = \hat{P}_n u(W + \sum_{n+1}^T ct) + (1 - \hat{P}_n) \mathbb{E}V(n+1)
 $$
 %
-Where $p^{\pi}_n$ represents the Bayesian posterior mean after $n$ failures. By recursive substitution we can represent this as:
-%
+Where $W$ is the prize from winning. The stopping time is thus given by:
 $$
-\mathbb{E}V_p(n) = \left[u(W) + V_q \right] \hat{P}_n
-$$
-%
-Where $\hat{P}_n$ is defined as:
-$$
-\hat{P}_n \equiv p^{\pi}_{n} + \sum_{j = n + 1}^{\infty} \beta^{j - n} p^{\pi}_{j} \prod_{k = n + 1}^{j} \left( 1 - p^{\pi}_{k - 1} \right)
+\mathbb{E}V_p(n) = u\left( \sum_0^T ct \right)
 $$
 %
-The optimal stopping time, $n$, is then given by:
+Assume now that there exists some future period, $n+1$, in which it is not optimal to play. With this assumption, we can define the conditions for stopping at time $n$:
 %
+$$
+\mathbb{E}V_p(n) = V_q(n)
+$$
+Using our assumption about $n+1$ (in which $V(n+1) = V_q(n+1)$), we can rewrite $\mathbb{E}V_p(n)$ as:
 \begin{align*}
-V_q  &= \left[u(W) + V_q \right] \hat{P}_n
+\mathbb{E}V_p(n) &= \hat{P}_n u(W + \sum_{n+1}^T ct) + (1 - \hat{P}_n)u\left( \sum_{n+1}^T ct \right) \\
+\mathbb{E}V_p(n) &= \hat{P}_n \left[   u(W + \sum_{n+1}^T ct) - u\left( \sum_{n+1}^T ct \right) \right]+ u\left( \sum_{n+1}^T ct \right)
 \end{align*}
-
+%
+Which implies a stopping time of:
+$$
+\hat{P}_n \left[   u(W + \sum_{n+1}^T ct) - u\left( \sum_{n+1}^T ct \right) \right] = u\left( \sum_n^T ct \right) - u\left( \sum_{n+1}^T ct \right)
+$$
+%
+Letting $u^m_{n}$ denote the marginal utility of some consumption above and beyond $\sum_{n}^T ct$, we can write the stopping time conditions as follows:
+$$
+\hat{P}_{n} u^m_{n+1}(W) = u^m_{n+1}(ct)
+$$
 
 \subsection{ Results }
 
 Summary statistics of the results provided in table \ref{table:descriptive-3}.
 
-What we actually want to test is whether or there is a difference between how they calculate $\hat{P}_n$, and how that differs from the correct Bayesian estimation. If we knew the opportunity cost of time, $c$, and the utility function and discount rate, we could back out their estimate of the probability:
+What we want to test is whether or there is a difference between how participants in the two treatment groups calculate $\hat{P}_n$, and how that differs from the correct Bayesian estimation. If we knew the opportunity cost of time, $c$, the utility function, and the horizon, we could back out their estimate of the probability:
 $$
-\hat{P}_n = \frac{u(c)}{(1 - \beta)u(W) + u(c)}
-$$
-%
-Thus, it might be instructional to assume a functional form for the utility function, assume perfect Bayesian probability updating, and then estimate the opportunity cost of time, which should be equally distributed for both groups:
-%
-$$
-c = u^{-1} \left( \left(1 - \beta \right) u(W) \frac{\hat{P}_n}{1 - \hat{P}_n} \right)
+\hat{P}_{n}  = \frac{u^m_{n+1}(ct)}{u^m_{n+1}(W)}
 $$
 %
-These estimates are provided in table \ref{table:descriptive-3}, where one can see the results of a Mann Whitney U test between the distribution of costs for both groups.
+Thus, it might be instructional to assume a functional form for the marginal utility, assume perfect Bayesian probability updating, and then calculate the implied opportunity cost by their measured stopping time. Given a correct assumption of the functional form, and given the null hypothesis of any errors in probability updating to be equal between the treatment groups, we expect the opportunity costs to be equally distributed for both groups.
 
-A couple of facts jump out:
+These estimates are provided in table \ref{table:descriptive-3}, where one can see the results of a Mann Whitney U test between the distribution of costs for both groups. A couple of facts jump out:
 
 \begin{enumerate}
 \item The implied opportunity costs are very high: about \$75 per hour for group A and \$50 for group B, assuming the identity utility function (risk neutrality).
-\item The implied opportunity costs of the two groups seem likely to come from different distributions.
+\item The implied opportunity costs of the two groups likely come from different distributions.
 \end{enumerate}
 
-It thus appears that our participants decrease their probability estimate of winning too quickly. This is in accordance with the literature regarding probability estimation of rare events from experience (\cite{hertwig2004}), in which participants underestimate the probability of rare events. Additionally, we can weakly infer from this evidence that the strength of this bias is positively correlated with the numerocity of the problem: if you increase the scale of the problem by speeding it up, you worsen the bias.
+Given the high implied opportunity cost, we infer that our participants decrease their probability estimate of winning too quickly. This is in accordance with the literature regarding probability estimation of rare events from experience (\cite{hertwig2004}), in which participants underestimate the probability of rare events. Additionally, we can weakly infer from this evidence that the strength of this bias is positively correlated with the numerocity of the problem: if you increase the scale of the problem (by increasing the speed), you worsen the bias.
 
 
 \section{ An Equilibrium Model }
@@ -241,21 +243,17 @@ I use the empirical results from the second experiment to estimate the bias para
 
 A priori, we do not know the opportunity cost of time of each of the workers, but we can use the assumptions that A) they come from the same distribution and B) the distribution is limited in how spread we believe it is, we can estimate the opportunity cost for each participant as:
 $$
-c_i \sim \text{Normal}(\mu^c, \sigma^c)
+c_i \sim \text{DoubleExponential}(\mu^c, \sigma^c)
 $$
-Where $\mu^c$ and $\sigma^c$ are population parameters learned hierarchically with a weakly informative (half-Cauchy) prior on the mean and fairly strong inverse-gamma prior on the variance that shrinks it towards zero, thus grouping our cost estimates together as per our assumption. We then estimate a bias parameter for each individual::
+Where $\mu^c$ and $\sigma^c$ are hyperparameters estimated using TurkerView, a website where Turkers review tasks and task-creators, including posting the calculated hourly wage of each task. 15 participants from the experiment left reviews on TurkerView, and from each of those 15 participants, I scraped the most recent 50 reviews of other tasks they had completed. As such, I assembled a small sampled of about 700 hourly wages. The hyperparameters were then estimated by minimizing the KL-divergence between the fitted truncated double exponential distribution and the scraped wages.
+
+We then estimate a bias parameter for each individual::
 \begin{align*}
   \epsilon_i \sim \text{Normal}(\mu^{\epsilon}_g, \sigma^{\epsilon}_g)
 \end{align*}
-Where ``group'' parameters $\mu^{\epsilon}_g$ and $\sigma^{\epsilon}_g$ are learned hierarchically for each treatment group, $g$. I use an uninformative half-Cauchy prior on the median and weaker inverse-gamma prior on the variance. Exact specifications of all the model are available in the online supplementary materials and code.
+Where treatment parameters $\mu^{\epsilon}_g$ and $\sigma^{\epsilon}_g$ are learned hierarchically for each treatment group, $g$. I use an uninformative half-Cauchy prior on the median and weak inverse-gamma prior on the variance. Exact specifications of all the model are available in the online supplementary materials and code.
 
-We model the CRRA risk-aversion parameter, $\rho$, as:
-\begin{align*}
-  \rho \sim \text{Gamma}(3, 1)
-\end{align*}
-A weak prior with a mode of about 2. It is indicative that this parameter stays exactly at its mode, showing that our specification is robust to any reasonable parameter of risk-aversion.
-
-Finally:
+The probability estimation is given by:
 \begin{align*}
   p_{i} = \frac{1}{1 + N_i(1 + \epsilon_g)}
 \end{align*}
@@ -263,12 +261,11 @@ Where $p_{i,g}$ indicates the posterior mean estimated probability of winning of
 $$
 p_{i,g} u\left( W \right) = u\left( c_it_i \right)
 $$
-Where $t_i$ is the mean time between each roll measured for participant $i$. For tractability, I transform this into a squared exponentiated loss function with a large penalization term, $\delta$:
+Where $t_i$ is the mean time between each roll measured for participant $i$. Marginal utility is assumed to be linear. For tractability the constraint is softened by assuming:
 $$
-\exp \left\{ \delta \left[ p_{i,g} u\left( W \right) - u\left( c_it_i \right) \right]^2 \right\}
+\frac{p_{i,g}W}{c_it_i} \sim \text{LogNormal}(0, \frac{1}{\delta})
 $$
-
-The theoretical model, while close, does not align exactly with the empirical model I have chosen. This is driven by several simple, and common, assumptions in the theoretical model:
+With penalty term $\delta$ chosen to be sufficiently large to ensure the condition. The theoretical model, while close, does not align exactly with the empirical model I have chosen. This is driven by several simple, and common, assumptions in the theoretical model:
 %
 \begin{enumerate}
 \item All applicants know the probability of a successful job application conditional on their skill level.
@@ -277,18 +274,18 @@ The theoretical model, while close, does not align exactly with the empirical mo
 \end{enumerate}
 
 The nature of the last two assumptions is that job seekers update their beliefs quickly after the first couple of rejections, and given the discretization of the submarket space into a reasonably small number of submarkets, they quickly end up searching the lowest possible submarket after a few rejections. Because of this quirk of the model, we cannot appropriately add the exact biases that we have estimated: any bias over 1 will cause the same behavior. Thus, we calibrate the model by normalizing the lower bias to 0. In other words:
-
+%
 \begin{equation} \label {eq:epsilon-model}
 \epsilon^{mod}_{g} = \frac{\epsilon_g - \min(\epsilon_g, \epsilon_{g'})}{\min (\epsilon_g, \epsilon_{g'})}
 \end{equation}
-
+%
 Where $\epsilon_{g}$ is the empiricallly estimated bias for treatment group $g$, and $g'$ represents the other treatment.
 
 \subsection{ Results }
 
-Figure \ref{fig:posterior-mean-bias} shows the posterior distribution, calculated via Hamiltonian MCMC, of the two location parameters, $\mu_{\epsilon, g}$, which relate to the estimated mean bias within each treatment group.
+Figure \ref{fig:posterior-mean-bias} shows the posterior distribution of the two location parameters, $\mu_{\epsilon, g}$, calculated via Hamiltonian MCMC.
 
-It is worth noting that, sampling from this posterior, one can only reject the null hypothesis that the mean bias of group B is greater than or equal to group A at an 11\% level. This confidence level is in line with the inferences made directly from the simplistic opportunity costs calculated previously in regards to the experimental results themselves.
+It is worth noting that, sampling from this posterior, one can reject the null hypothesis that the mean bias of group B is greater than or equal to group A at a 0.9\% level. This serves as additional evidence that the treatment significantly affects the way participants compute posterior probabilities.
 
 Full model parameters are provided in table \ref{table:model-params}, although these parameters should be considered extremely preliminary, as they were not calibrated specifically for this model. The results of posterior-updating bias on the wage-distribution outcomes, however, seem very robust to the rest of the model's calibration.
 
@@ -342,14 +339,14 @@ Additionally, I believe it is important to note that all of these affects might 
       & Group & N & t &  Rolls  &  Time played & c ($\rho = 2$) & c ($\rho = 1$) & c ($\rho = 0$)\\
       \hline
       \hline \\ [-1.8ex]
-      Median &         a & 29 &          4 &    54 &  240 &                 0.0043 &                 0.0277 &                    2.1368  \\
-      &         b & 28 &         15 &    18 &  311 &                0.0030 &                 0.0207 &                    1.4448  \\
-      Mean &         a & 29 &          5 &    77 &  374 &              0.0077 &                 0.0541 &                    3.6450  \\
-       &         b & 28 &         17 &    24 &  400 &              0.0046 &                 0.0366 &                    2.0875  \\
+      Median &         a & 29 &          4 &    54 &  240 &        0.0204 &                 0.0209 &                    2.1368  \\
+      &         b & 28 &         15 &    18 &  311 &               0.0138 &                 0.0141 &                    1.4448  \\
+      Mean &         a & 29 &          5 &    77 &  374 &          0.0348 &                 0.0356 &                    3.6450  \\
+       &         b & 28 &         17 &    24 &  400 &              0.0200 &                 0.0204 &                    2.0875  \\
       \hline \\ [-1.8ex]
-      MW p-val & & & & & & 0.114 & 0.192 & 0.078 \\
+      MW p-val & & & & & & 0.084 & 0.084 & 0.078 \\
       \hline \\ [-1.8ex]
-      \multicolumn{6}{l}{\textit{Where $t$ is roll time and $c$ is opportunity cost in cents per second}} \\
+      \multicolumn{8}{l}{\textit{Where $t$ is roll time and $c$ is opportunity cost in cents per second and $\rho$ risk aversion in CRRA function}} \\
     \end{tabular}
   \end{center}
 \end{sidewaystable}
