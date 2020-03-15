@@ -1,5 +1,20 @@
 # Job Search The Impacts of Labor Market Congestion on Job Search
 
+## Nov 2018
+
+Rethinking how to display the macro implications.
+
+The impact of increased application speed will be different, for the top x% it will be great, for the rest, it will cause them to underestimate their value in the market.
+
+=> An increased dispersion, within fields, of wages, with the top x% getting more. This dispersion should be even higher for jobs posted online then jobs not posted online.
+
+=> The introduction, within a system, of quick applications should lead to more "settling" by job seekers >> A bigger shift in the type of jobs they search for over time.
+
+=> A model that shows how learning over time affects wage levels, inequality, and unemployment, and how an increased bias in the way individuals downgrade their priors, leads to outcomes Y.
+
+
+
+
 ## Abstract
 
 The internet is often considered a great reducer of frictions, and a reduction of frictions is often expected to lead to more efficient market outcomes. In the labor market, a clear implication of internet-based job applications is the ability for every worker to apply to more jobs without a corresponding increase in the firms' ability to interview more workers. In this paper I consider the interaction between this increased congestion and the search behavior of workers.
