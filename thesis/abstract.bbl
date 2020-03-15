@@ -1,0 +1,63 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{gonzalez2010}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=23d911d620dff43a929f4b58f75cecf7}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Francisco\bibnamedelima M},
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=3483ae500e0b18ea274def4206072a7c}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Shouyong},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{fullhash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{bibnamehash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{authorbibnamehash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{authornamehash}{e342020d47faad318f0d33551ac2deb3}
+      \strng{authorfullhash}{e342020d47faad318f0d33551ac2deb3}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica}
+      \field{number}{2}
+      \field{title}{An equilibrium theory of learning, search, and wages}
+      \field{volume}{78}
+      \field{year}{2010}
+      \field{pages}{509\bibrangedash 537}
+      \range{pages}{29}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
